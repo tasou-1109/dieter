@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/dieter/static/css/main.732ca135.css",
+    "main.js": "/dieter/static/js/main.57afafa7.js",
+    "static/js/453.0193d589.chunk.js": "/dieter/static/js/453.0193d589.chunk.js",
+    "index.html": "/dieter/index.html",
+    "main.732ca135.css.map": "/dieter/static/css/main.732ca135.css.map",
+    "main.57afafa7.js.map": "/dieter/static/js/main.57afafa7.js.map",
+    "453.0193d589.chunk.js.map": "/dieter/static/js/453.0193d589.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.732ca135.css",
+    "static/js/main.57afafa7.js"
+  ]
+}
