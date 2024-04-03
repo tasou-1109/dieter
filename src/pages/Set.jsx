@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import "./set.scss";
 
 export const Set = () => {
   //APIでデータを取得する
@@ -10,18 +11,28 @@ export const Set = () => {
   const [meet, setMeet] = useState();
 
   return (
-    <>
-      <h2>記録</h2>
-
-      <label class="training">トレーニング内容</label>
+    <div className="set-main">
+      <h1 className="title">記録</h1>
+      <label className="training__label">トレーニング内容</label>
       <br />
-      <input type="text" list="training-choise" />
-      <datalist id="training-choise">
+      <input type="text" list="training__list" className="training__choice" />
+      <datalist id="training__list">
         {menu.map((menu) => {
           return <option key={menu}>{menu}</option>;
         })}
       </datalist>
-    </>
+      <br />
+      <label className="meal__title">食事内容</label>
+      <br />
+      <textarea className="meal__set"></textarea>
+      <br />
+      <label className="body__weight">現在体重</label>
+      <br />
+      <input type="text" className="body__weight-set" />
+      kg
+      <br />
+      <button className="Set__button">記録</button>
+    </div>
   );
 };
 
