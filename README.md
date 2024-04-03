@@ -1,70 +1,23 @@
-# Getting Started with Create React App
+# サイト名「ダイエッター」
+概要：その日行った筋トレのメニューと食事内容、体重を記録することができるカレンダー形式のwebサイト
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+作った理由：何を作るかと考えるにあたり、自分の趣味である筋トレから、「ダイエットをする」もしくは「ダイエットをしている」人に向けた作品にしたいとは考えていた。しかし筋トレを記録するサイトはありふれており、頭を悩ませていたところ、アルバイト先の同僚から「筋トレの記録ができるものは多くても、食事の記録も一緒にできるものは少ないよね」とアドバイスをもらい、この作品に決めた。
 
-## Available Scripts
+仕様 　１，ホーム画面 　・カレンダーが大きく表示されており、日付をクリックすると記録ページに飛ぶことができる 　 ・画面下部には前日の筋トレメニュー、食事内容、現在体重が表示されている
 
-In the project directory, you can run:
+２，記録ページ ・その日行った筋トレメニューの入力欄 　→一度記録したメニューは保存され、別日に記録する場合は手入力しなくても選択可能になる
 
-### `npm start`
+・その日一日の食事入力欄 　→細かい項目はなく、文章での入力
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+・体重入力欄 　→もし最後に記録した日から変化がない場合は、入力の必要はない
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+　３，ログイン画面 　・ユーザネームとパスワードの入力でログインが可能 　→もしアカウントがない場合に備えて、新規登録画面変リンクが下に張ってある
 
-### `npm test`
+４，新規登録画面 ・ユーザネームとパスワードの設定でアカウント作成が可能 　　→もしアカウントが存在してる場合に備えて、ログイン画面へのリンクが下に貼ってある
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+今後の展望： 現在開発途中で、筋トレや食事などの記録機能と、記録したものを画面に表示する機能が完成していない状態です。 
+上に記載したような大まかな機能の実装が完了したら、友人や家族、アルバイト先の同僚などいろんな人に実際に使用してもらい、改善や機能の追加をしていこうと考えています。
 
-### `npm run build`
+追加構想：
+　１，目標機能：その日「行った」筋トレではなく、その日「行う予定」の筋トレメニューを「目標」という形で記録できるようにしたい。
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
