@@ -7,7 +7,7 @@ export const Training = () => {
 
   return (
     <>
-      <h2>記録</h2>
+      <h2>前日の記録</h2>
 
       <label>筋トレ</label>
       <br />
