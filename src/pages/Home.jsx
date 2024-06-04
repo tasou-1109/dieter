@@ -16,7 +16,7 @@ export const Home = () => {
         <Yotei />
         <br />
 
-        <Link to="/dieter/Login">ログイ</Link>
+        <Link to="/dieter/Login">ログイン</Link>
 
         <div className="main__mem">
           <Training />
