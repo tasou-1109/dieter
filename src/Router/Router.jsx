@@ -13,19 +13,21 @@ export const Router = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/login" element={<LogIn />} />
-        <Route path="/SignUp" element={<SignUp />} />
-        {auth ? (
+        <Route path="/dieter/Login" element={<LogIn />} />
+        <Route path="/dieter/SignUp" element={<SignUp />} />
+        <Route path="/dieter" element={<Home />} />
+        <Route path="/dieter/Set/:date" element={<Set />} />
+        {/* {auth ? (
           <>
             <Route path="/dieter" element={<Home />} />
-            <Route path="/Set/:date" element={<Set />} />
+            <Route path="/dieter/Set/:date" element={<Set />} />
           </>
         ) : (
           <>
-            <Route path="/login" element={<LogIn />} />
-            <Route path="/SignUp" element={<SignUp />} />
+            <Route path="/dieter/Login" element={<LogIn />} />
+            <Route path="/dieter/SignUp" element={<SignUp />} />
           </>
-        )}
+        )} */}
 
         {/* {auth ? (
           <>

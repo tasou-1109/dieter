@@ -53,7 +53,7 @@ export const LogIn = () => {
 
     //APIへのデータ送信
   };
-  if (auth) return <Navigate to="/" />;
+  // if (auth) return <Navigate to="/dieter" />;
 
   return (
     <div>
@@ -112,7 +112,7 @@ export const LogIn = () => {
         </form>
 
         <br />
-        <Link to="/signup">新規作成</Link>
+        <Link to="/dieter/SignUp">新規作成</Link>
       </main>
     </div>
   );

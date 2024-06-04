@@ -52,20 +52,25 @@ export const SignUp = () => {
   // };
 
   //作成ボタン押下処理
-  const onSignUp = () => {
+  const onSignUp = async () => {
     reset();
 
     //APIに送るデータのセット
-    const apidata = {
+    // const data = {
+    //   email: mail,
+    //   name: name,
+    //   password: password,
+    // };
+
+    await supabase.auth.signUp({
       email: mail,
-      name: name,
       password: password,
-    };
+    });
 
     //APIにデータ送信
 
     //既に登録済みだった時の処理
-    if (auth) return <Route element={<Navigate to="/" />}></Route>;
+    if (auth) return <Route element={<Navigate to="/dieter" />}></Route>;
   };
 
   return (
@@ -94,7 +99,7 @@ export const SignUp = () => {
           </div>
           <br />
 
-          <br />
+          {/* <br />
           <label>ユーザ名</label>
           <br />
           <input
@@ -110,7 +115,7 @@ export const SignUp = () => {
           <div id="signup-Form__error_name">
             {errors.name && <span>{errors.name.message}</span>}
           </div>
-          <br />
+          <br /> */}
 
           <br />
           <label>パスワード</label>
@@ -162,7 +167,7 @@ export const SignUp = () => {
           ></input>
         </form>
         <br />
-        <Link to="/login" id="link-Log">
+        <Link to="/dieter/Login" id="link-Log">
           ログイン
         </Link>
       </main>

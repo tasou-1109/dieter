@@ -10,11 +10,11 @@ export const Header = () => {
 
   const handleSignOut = () => {
     supabase.auth.signOut();
-    Nav("/login");
+    Nav("/dieter/Login");
   };
 
   const goLogin = () => {
-    Nav("/login");
+    Nav("/dieter/Login");
   };
 
   // useEffect(() => {
