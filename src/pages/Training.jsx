@@ -1,9 +1,12 @@
 import React, { useState } from "react";
+import { supabase } from "../supabase";
 
 export const Training = () => {
   const [kin, setKin] = useState([]);
   const [meat, setMeat] = useState([]); //のちのちAPIでデータを取得する。もしデータが存在しない場合は空で出力する
   const [tai, setTai] = useState(70);
+
+  //ここでuseEffectを使用しデータを取得する
 
   return (
     <>

@@ -7,8 +7,10 @@ export const Set = () => {
   const [gtai, setGtai] = useState(70);
 
   const [kin, setKin] = useState([]);
-  const [tai, settai] = useState(70);
+  const [tai, setTai] = useState(70);
   const [meet, setMeet] = useState();
+
+  //ここでuseEffectを使用しデータ取得する
 
   return (
     <div className="set-main">

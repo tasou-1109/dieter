@@ -9,7 +9,7 @@ export const Yotei = () => {
 
   const handleEventSerect = (e) => {
     const date = e;
-    nav(`/dieter/Set/${date}`);
+    nav(`/Set/${date}`);
     // console.log(e);
   };
 
