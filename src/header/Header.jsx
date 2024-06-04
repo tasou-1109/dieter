@@ -17,13 +17,11 @@ export const Header = () => {
     Nav("/login");
   };
 
-  
-    useEffect(() => {
-        if(auth){
-            setUserName(supabase)
-        }
-    })
-  
+  // useEffect(() => {
+  //     if(auth){
+  //         setUserName(supabase)
+  //     }
+  // })
 
   return (
     <>
