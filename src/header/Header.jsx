@@ -1,7 +1,7 @@
 import "./header.scss";
 import React, { useEffect, useState } from "react";
 import { supabase } from "../supabase";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 export const Header = () => {
   const auth = supabase.auth.getSession();
@@ -10,11 +10,11 @@ export const Header = () => {
 
   const handleSignOut = () => {
     supabase.auth.signOut();
-    Nav("/dieter/Login");
+    // Nav("/dieter/Login");
   };
 
   const goLogin = () => {
-    Nav("/dieter/Login");
+    // Nav("/dieter/Login");
   };
 
   // useEffect(() => {
@@ -39,9 +39,9 @@ export const Header = () => {
           <h1 className="header__title">ダイエッター</h1>
           <h3 className="header__name">ユーザ名</h3>
           &emsp;
-          <button onClick={goLogin()} className="header__signOut">
+          <Link to="/dieter/Login" className="header__signOut">
             ログイン
-          </button>
+          </Link>
         </header>
       )}
     </>

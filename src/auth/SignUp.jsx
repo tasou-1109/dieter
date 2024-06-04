@@ -63,6 +63,7 @@ export const SignUp = () => {
     // };
 
     await supabase.auth.signUp({
+      DisplayName: name,
       email: mail,
       password: password,
     });
@@ -99,7 +100,7 @@ export const SignUp = () => {
           </div>
           <br />
 
-          {/* <br />
+          <br />
           <label>ユーザ名</label>
           <br />
           <input
@@ -115,7 +116,7 @@ export const SignUp = () => {
           <div id="signup-Form__error_name">
             {errors.name && <span>{errors.name.message}</span>}
           </div>
-          <br /> */}
+          <br />
 
           <br />
           <label>パスワード</label>
