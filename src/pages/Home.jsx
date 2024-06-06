@@ -8,7 +8,6 @@ import { Header } from "../header/Header";
 import { supabase } from "../supabase";
 
 export const Home = () => {
-  console.log(supabase.auth.getSession());
   return (
     <div>
       <Header />

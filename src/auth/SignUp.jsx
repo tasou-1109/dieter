@@ -1,5 +1,4 @@
-import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate, Navigate, Route } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
@@ -10,10 +9,16 @@ import { supabase } from "../supabase.js";
 export const SignUp = () => {
   //ページ移動用
   const nav = useNavigate();
+  const [session, setSession] = useState(null);
 
   //状態関係
-  const auth = supabase.auth.getSession(); //画像格納用multipart/form-data
-  // const icon = new FormData();
+  useEffect(() => {
+    setSession(supabase.auth.getSession());
+
+    supabase.auth.onAuthStateChange((event, session) => {
+      setSession(session);
+    });
+  }, []);
 
   //バリデーション用
   const {
@@ -25,7 +30,7 @@ export const SignUp = () => {
 
   //ユーザ情報
   const [mail, setMail] = useState("");
-  const [name, setName] = useState("");
+  // const [name, setName] = useState("");
   const [password, setPassword] = useState("");
 
   //エラー
@@ -33,46 +38,26 @@ export const SignUp = () => {
 
   //入力情報登録
   const handleMailChange = (e) => setMail(e.target.value);
-  const handleNameChange = (e) => setName(e.target.value);
+  // const handleNameChange = (e) => setName(e.target.value);
   const handlePasswordChange = (e) => setPassword(e.target.value);
-
-  //アイコン画像の圧縮とAPIへの画像送信
-  // const handleIconSet = (e) => {
-  //   const data = e.target.files[0];
-
-  //   new Compressor(data, {
-  //     quality: 0.6,
-  //     success(result) {
-  //       icon.append("icon", result);
-  //     },
-  //     error(err) {
-  //       console.log("アイコンの設定に失敗しました" + err);
-  //     },
-  //   });
-  // };
 
   //作成ボタン押下処理
   const onSignUp = async () => {
-    reset();
+    try {
+      reset();
 
-    //APIに送るデータのセット
-    // const data = {
-    //   email: mail,
-    //   name: name,
-    //   password: password,
-    // };
-
-    await supabase.auth.signUp({
-      DisplayName: name,
-      email: mail,
-      password: password,
-    });
-
-    //APIにデータ送信
-
-    //既に登録済みだった時の処理
-    if (auth) return <Route element={<Navigate to="/dieter" />}></Route>;
+      const { error } = await supabase.auth.signUp({
+        email: mail,
+        password: password,
+      });
+      if (error) throw error;
+      nav("/dieter");
+    } catch (error) {
+      alert(error.message);
+    }
   };
+
+  // if (session === "INITIAL_SESSION") return <Navigate to="/dieter" />;
 
   return (
     <div>
@@ -81,6 +66,24 @@ export const SignUp = () => {
         <p className="error-Mes">{signError}</p>
 
         <form onSubmit={handleSubmit(onSignUp)} className="signup-Form">
+          {/* <br />
+          <label>ユーザ名</label>
+          <br />
+          <input
+            {...register("name", {
+              required: "名前を入力してください",
+              minLength: { value: 2, message: "2文字以上にしてください" },
+            })}
+            className="signup-Form__user-Set"
+            type="text"
+            onChange={(e) => handleNameChange(e)}
+            id="signup-Form__name-Set"
+          />
+          <div id="signup-Form__error_name">
+            {errors.name && <span>{errors.name.message}</span>}
+          </div>
+          <br /> */}
+
           <label>メールアドレス</label>
           <br />
           <input
@@ -97,24 +100,6 @@ export const SignUp = () => {
           />
           <div id="signup-Form__error_mail">
             {errors.mail && <span>{errors.mail.message}</span>}
-          </div>
-          <br />
-
-          <br />
-          <label>ユーザ名</label>
-          <br />
-          <input
-            {...register("name", {
-              required: "名前を入力してください",
-              minLength: { value: 2, message: "2文字以上にしてください" },
-            })}
-            className="signup-Form__user-Set"
-            type="text"
-            onChange={(e) => handleNameChange(e)}
-            id="signup-Form__name-Set"
-          />
-          <div id="signup-Form__error_name">
-            {errors.name && <span>{errors.name.message}</span>}
           </div>
           <br />
 
@@ -146,19 +131,6 @@ export const SignUp = () => {
             {errors.password && <span>{errors.password.message}</span>}
           </div>
           <br />
-
-          {/* <br />
-          <label className="signup-Form__icon">アイコン設定</label>
-          <br />
-
-          <input
-            className="signup-Form__icon-Set"
-            type="file"
-            id="icon"
-            accept=".jpg,.png"
-            onChange={(e) => handleIconSet(e)}
-          />
-          <br /> */}
 
           <br />
           <input

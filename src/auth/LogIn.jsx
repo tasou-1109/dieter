@@ -7,19 +7,20 @@ import "./login.scss";
 import { supabase } from "../supabase";
 
 export const LogIn = () => {
+  const nav = useNavigate();
+
   const [session, setSession] = useState(null);
+  // const auth = supabase.auth.getSession();
+  // console.log(auth);
 
   useEffect(() => {
-    setSession(supabase.auth.getSession());
     supabase.auth.onAuthStateChange((event, session) => {
-      setSession(session);
+      setSession(event);
     });
   }, []);
 
   //ページ移動用
-  const nav = useNavigate();
-
-  const auth = supabase.auth.getSession();
+  // const nav = useNavigate();
 
   //状態管理
   // const [, setCookie] = useCookies();
@@ -42,17 +43,21 @@ export const LogIn = () => {
   const handleMailChange = (e) => setMail(e.target.value);
   const handlePasswordChange = (e) => setPassword(e.target.value);
 
-  const onLogIn = () => {
-    reset();
+  const onLogIn = async () => {
+    try {
+      reset();
 
-    //APIへ送るデータセット
-    const data = {
-      email: mail,
-      password: password,
-    };
-
-    //APIへのデータ送信
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email: mail,
+        password: password,
+      });
+      if (error) throw error;
+      nav("/dieter");
+    } catch (error) {
+      alert(error.message);
+    }
   };
+
   // if (auth) return <Navigate to="/dieter" />;
 
   return (
@@ -66,6 +71,7 @@ export const LogIn = () => {
           <br />
           <input
             {...register("mail", {
+              required: "メアドを入力してください",
               pattern: {
                 value: /\S+@\S+\.\S+/,
                 message: "メールアドレスの形式が違います",
@@ -85,6 +91,7 @@ export const LogIn = () => {
           <br />
           <input
             {...register("password", {
+              required: "パスワードを入力してください",
               minLength: {
                 value: 8,
                 message: "8文字以上24文字以下にしてください",
