@@ -8,12 +8,19 @@ import { useEffect, useState } from "react";
 import { supabase } from "../supabase";
 
 export const Router = () => {
-  const [session, setSession] = useState(null);
+  // const [data, setData] = useState(null);
+  const [auth, setAuth] = useState(null);
+
+  const getLogin = async () => {
+    const { data } = await supabase.auth.getSession(); //メソッドで非同期処理を行う
+
+    if (data.session) {
+      setAuth(data.session);
+    }
+  };
 
   useEffect(() => {
-    supabase.auth.onAuthStateChange((event, session) => {
-      setSession(event);
-    });
+    getLogin();
   }, []);
 
   return (
@@ -21,19 +28,20 @@ export const Router = () => {
       <Routes>
         <Route path="/dieter/Login" element={<LogIn />} />
         <Route path="/dieter/SignUp" element={<SignUp />} />
-        <Route path="/dieter" element={<Home />} />
-        <Route path="/dieter/Set/:date" element={<Set />} />
-        {/* {auth ? (
+        {/* <Route path="/dieter" element={<Home />} />
+        <Route path="/dieter/Set/:date" element={<Set />} /> */}
+        {!auth ? (
           <>
             <Route path="/dieter" element={<Home />} />
-            <Route path="/dieter/Set/:date" element={<Set />} />
-          </>
-        ) : (
-          <>
             <Route path="/dieter/Login" element={<LogIn />} />
             <Route path="/dieter/SignUp" element={<SignUp />} />
           </>
-        )} */}
+        ) : (
+          <>
+            <Route path="/dieter" element={<Home />} />
+            <Route path="/dieter/Set/:e" element={<Set />} />
+          </>
+        )}
       </Routes>
     </BrowserRouter>
   );

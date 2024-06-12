@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 // import { Set } from "./Set.jsx";
 import { Training } from "./Training";
 import { Yotei } from "./Yotei";
@@ -8,6 +8,20 @@ import { Header } from "../header/Header";
 import { supabase } from "../supabase";
 
 export const Home = () => {
+  const [auth, setAuth] = useState(null);
+
+  const getLogin = async () => {
+    const { data } = await supabase.auth.getSession(); //メソッドで非同期処理を行う
+
+    if (data.session) {
+      setAuth(data.session);
+    }
+  };
+
+  useEffect(() => {
+    getLogin();
+  }, []);
+
   return (
     <div>
       <Header />
@@ -15,11 +29,13 @@ export const Home = () => {
         <Yotei />
         <br />
 
-        <Link to="/dieter/Login">ログイン</Link>
-
-        <div className="main__mem">
-          <Training />
-        </div>
+        {auth ? (
+          <div className="main__mem">
+            <Training />
+          </div>
+        ) : (
+          <></>
+        )}
       </main>
     </div>
   );

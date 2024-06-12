@@ -6,13 +6,20 @@ import { useNavigate, Link } from "react-router-dom";
 export const Header = () => {
   const nav = useNavigate();
 
+  const [data, setData] = useState(null);
   const [session, setSession] = useState(null);
+  const [auth, setAuth] = useState(null);
+
+  const getLogin = async () => {
+    const { data } = await supabase.auth.getSession(); //メソッドで非同期処理を行う
+
+    if (data.session) {
+      setAuth(data.session);
+    }
+  };
 
   useEffect(() => {
-    supabase.auth.onAuthStateChange((event, session) => {
-      console.log(event);
-      setSession(event);
-    });
+    getLogin();
   }, []);
 
   const handleSignOut = async (e) => {
@@ -26,14 +33,24 @@ export const Header = () => {
     // Nav("/dieter/Login");
   };
 
+  const handleLogin = () => {
+    nav("/dieter/Login");
+  };
+
   return (
     <>
       <header className="header">
         <h1 className="header__title">ダイエッター</h1>
         &emsp;
-        <button onClick={(e) => handleSignOut(e)} className="header__signOut">
-          サインアウト
-        </button>
+        {auth ? (
+          <button onClick={(e) => handleSignOut(e)} className="header__signOut">
+            サインアウト
+          </button>
+        ) : (
+          <button onClick={(e) => handleLogin()} className="header__signOut">
+            ログイン
+          </button>
+        )}
       </header>
     </>
   );

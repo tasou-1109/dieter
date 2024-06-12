@@ -3,26 +3,51 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin, { DateClickArg } from "@fullcalendar/interaction";
 import jaLocale from "@fullcalendar/core/locales/ja";
 import { Link, useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { supabase } from "../supabase";
 
 export const Yotei = () => {
   const nav = useNavigate();
 
+  const [auth, setAuth] = useState(null);
+
+  const getLogin = async () => {
+    const { data } = await supabase.auth.getSession(); //メソッドで非同期処理を行う
+
+    if (data.session) {
+      setAuth(data.session);
+    }
+  };
+
+  useEffect(() => {
+    getLogin();
+  }, []);
+
   const handleEventSerect = (e) => {
-    const date = e;
-    nav(`/dieter/Set/${date}`);
+    nav(`/dieter/Set/${e}`);
     // console.log(e);
   };
 
   return (
     <div>
-      <FullCalendar
-        plugins={[dayGridPlugin, interactionPlugin]}
-        initialView="dayGridMonth"
-        locales={[jaLocale]} // 追加
-        locale="ja"
-        selectable={true}
-        dateClick={(e) => handleEventSerect(e.dateStr)}
-      />
+      {auth ? (
+        <FullCalendar
+          plugins={[dayGridPlugin, interactionPlugin]}
+          initialView="dayGridMonth"
+          locales={[jaLocale]} // 追加
+          locale="ja"
+          selectable={true}
+          dateClick={(e) => handleEventSerect(e.dateStr)}
+        />
+      ) : (
+        <FullCalendar
+          plugins={[dayGridPlugin, interactionPlugin]}
+          initialView="dayGridMonth"
+          locales={[jaLocale]} // 追加
+          locale="ja"
+          selectable={true}
+        />
+      )}
     </div>
   );
 };

@@ -9,15 +9,19 @@ import { supabase } from "../supabase.js";
 export const SignUp = () => {
   //ページ移動用
   const nav = useNavigate();
-  const [session, setSession] = useState(null);
 
-  //状態関係
+  const [auth, setAuth] = useState(null);
+
+  const getLogin = async () => {
+    const { data } = await supabase.auth.getSession(); //メソッドで非同期処理を行う
+
+    if (data.session) {
+      setAuth(data.session);
+    }
+  };
+
   useEffect(() => {
-    setSession(supabase.auth.getSession());
-
-    supabase.auth.onAuthStateChange((event, session) => {
-      setSession(session);
-    });
+    getLogin();
   }, []);
 
   //バリデーション用
@@ -57,7 +61,7 @@ export const SignUp = () => {
     }
   };
 
-  // if (session === "INITIAL_SESSION") return <Navigate to="/dieter" />;
+  if (auth) return <Navigate to="/dieter" />;
 
   return (
     <div>
