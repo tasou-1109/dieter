@@ -7,7 +7,6 @@ export const Set = () => {
   //userId取得
   const YoteiState = useLocation();
   const userId = YoteiState.state.id;
-  // console.log(YoteiState.state.id);
 
   //APIでデータを取得する
   const [menu, setMenu] = useState(["a"]);
@@ -16,6 +15,8 @@ export const Set = () => {
   const [kin, setKin] = useState([]);
   const [tai, setTai] = useState(70);
   const [meet, setMeet] = useState();
+
+  
 
   return (
     <>

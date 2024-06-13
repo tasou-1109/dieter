@@ -20,6 +20,7 @@ export const Home = () => {
       // console.log(data.session.access_token);
       setUser(await supabase.auth.getUser());
       const a = await supabase.auth.getUser();
+      console.log(a.data.user.id);
       setUser(a.data.user.id);
     }
   };

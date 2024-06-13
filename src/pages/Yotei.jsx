@@ -30,14 +30,13 @@ export const Yotei = (info) => {
           dateClick={(e) => handleEventSerect(e.dateStr)}
         />
       ) : (
-        <></>
-        // <FullCalendar
-        //   plugins={[dayGridPlugin, interactionPlugin]}
-        //   initialView="dayGridMonth"
-        //   locales={[jaLocale]} // 追加
-        //   locale="ja"
-        //   selectable={true}
-        // />
+        <FullCalendar
+          plugins={[dayGridPlugin, interactionPlugin]}
+          initialView="dayGridMonth"
+          locales={[jaLocale]} // 追加
+          locale="ja"
+          selectable={true}
+        />
       )}
     </div>
   );
