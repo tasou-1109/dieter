@@ -15,7 +15,7 @@ export const Yotei = (info) => {
 
   const handleEventSerect = (date) => {
     nav(`/dieter/Set/${date}`, { state: { id: userId } });
-    // console.log(e);
+    console.log(date);
   };
 
   return (

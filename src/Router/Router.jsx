@@ -8,14 +8,12 @@ import { useEffect, useState } from "react";
 import { supabase } from "../supabase";
 
 export const Router = () => {
-  // const [data, setData] = useState(null);
   const [auth, setAuth] = useState(null);
 
   const getLogin = async () => {
     const { data } = await supabase.auth.getSession(); //メソッドで非同期処理を行う
 
     if (data.session) {
-      // console.log(data.session);
       setAuth(data.session);
     }
   };
