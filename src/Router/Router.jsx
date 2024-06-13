@@ -15,6 +15,7 @@ export const Router = () => {
     const { data } = await supabase.auth.getSession(); //メソッドで非同期処理を行う
 
     if (data.session) {
+      // console.log(data.session);
       setAuth(data.session);
     }
   };
@@ -30,16 +31,16 @@ export const Router = () => {
         <Route path="/dieter/SignUp" element={<SignUp />} />
         {/* <Route path="/dieter" element={<Home />} />
         <Route path="/dieter/Set/:date" element={<Set />} /> */}
-        {!auth ? (
+        {auth ? (
           <>
             <Route path="/dieter" element={<Home />} />
-            <Route path="/dieter/Login" element={<LogIn />} />
-            <Route path="/dieter/SignUp" element={<SignUp />} />
+            <Route path="/dieter/Set/:date" element={<Set />} />
           </>
         ) : (
           <>
             <Route path="/dieter" element={<Home />} />
-            <Route path="/dieter/Set/:e" element={<Set />} />
+            <Route path="/dieter/Login" element={<LogIn />} />
+            <Route path="/dieter/SignUp" element={<SignUp />} />
           </>
         )}
       </Routes>

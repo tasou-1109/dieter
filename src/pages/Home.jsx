@@ -10,11 +10,17 @@ import { supabase } from "../supabase";
 export const Home = () => {
   const [auth, setAuth] = useState(null);
 
+  const [user, setUser] = useState(null);
+
   const getLogin = async () => {
     const { data } = await supabase.auth.getSession(); //メソッドで非同期処理を行う
 
     if (data.session) {
-      setAuth(data.session);
+      setAuth(data.session.access_token);
+      // console.log(data.session.access_token);
+      setUser(await supabase.auth.getUser());
+      const a = await supabase.auth.getUser();
+      setUser(a.data.user.id);
     }
   };
 
@@ -26,7 +32,7 @@ export const Home = () => {
     <div>
       <Header />
       <main className="main">
-        <Yotei />
+        <Yotei userId={user} auth={auth} />
         <br />
 
         {auth ? (

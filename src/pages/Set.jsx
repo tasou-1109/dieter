@@ -1,8 +1,14 @@
 import React, { useEffect, useState } from "react";
 import "./set.scss";
+import { useLocation } from "react-router-dom";
 import { Header } from "../header/Header";
 
 export const Set = () => {
+  //userId取得
+  const YoteiState = useLocation();
+  const userId = YoteiState.state.id;
+  // console.log(YoteiState.state.id);
+
   //APIでデータを取得する
   const [menu, setMenu] = useState(["a"]);
   const [gtai, setGtai] = useState(70);
@@ -10,8 +16,6 @@ export const Set = () => {
   const [kin, setKin] = useState([]);
   const [tai, setTai] = useState(70);
   const [meet, setMeet] = useState();
-
-  //ここでuseEffectを使用しデータ取得する
 
   return (
     <>

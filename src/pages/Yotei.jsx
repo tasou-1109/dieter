@@ -6,25 +6,15 @@ import { Link, useNavigate } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import { supabase } from "../supabase";
 
-export const Yotei = () => {
+export const Yotei = (info) => {
+  //認証情報とuserIdの取得
+  const auth = info["auth"];
+  const userId = info["userId"];
+  // console.log(info);
   const nav = useNavigate();
 
-  const [auth, setAuth] = useState(null);
-
-  const getLogin = async () => {
-    const { data } = await supabase.auth.getSession(); //メソッドで非同期処理を行う
-
-    if (data.session) {
-      setAuth(data.session);
-    }
-  };
-
-  useEffect(() => {
-    getLogin();
-  }, []);
-
-  const handleEventSerect = (e) => {
-    nav(`/dieter/Set/${e}`);
+  const handleEventSerect = (date) => {
+    nav(`/dieter/Set/${date}`, { state: { id: userId } });
     // console.log(e);
   };
 
@@ -40,13 +30,14 @@ export const Yotei = () => {
           dateClick={(e) => handleEventSerect(e.dateStr)}
         />
       ) : (
-        <FullCalendar
-          plugins={[dayGridPlugin, interactionPlugin]}
-          initialView="dayGridMonth"
-          locales={[jaLocale]} // 追加
-          locale="ja"
-          selectable={true}
-        />
+        <></>
+        // <FullCalendar
+        //   plugins={[dayGridPlugin, interactionPlugin]}
+        //   initialView="dayGridMonth"
+        //   locales={[jaLocale]} // 追加
+        //   locale="ja"
+        //   selectable={true}
+        // />
       )}
     </div>
   );
