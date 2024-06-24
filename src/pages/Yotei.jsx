@@ -1,21 +1,23 @@
-import FullCalendar, { EventInput } from "@fullcalendar/react";
+import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
-import interactionPlugin, { DateClickArg } from "@fullcalendar/interaction";
+import interactionPlugin from "@fullcalendar/interaction";
 import jaLocale from "@fullcalendar/core/locales/ja";
-import { Link, useNavigate } from "react-router-dom";
-import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import React from "react";
 import { supabase } from "../supabase";
 
 export const Yotei = (info) => {
   //認証情報とuserIdの取得
   const auth = info["auth"];
   const userId = info["userId"];
-  // console.log(info);
+  const userName = info["name"];
   const nav = useNavigate();
 
-  const handleEventSerect = (date) => {
-    nav(`/dieter/Set/${date}`, { state: { id: userId } });
-    console.log(date);
+  const handleEventSecrect = (date) => {
+    nav(`/dieter/Set/${date}`, {
+      state: { id: userId, date: date, name: userName },
+    });
+    // console.log(date);
   };
 
   return (
@@ -27,7 +29,7 @@ export const Yotei = (info) => {
           locales={[jaLocale]} // 追加
           locale="ja"
           selectable={true}
-          dateClick={(e) => handleEventSerect(e.dateStr)}
+          dateClick={(e) => handleEventSecrect(e.dateStr)}
         />
       ) : (
         <FullCalendar

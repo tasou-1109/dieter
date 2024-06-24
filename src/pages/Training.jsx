@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { supabase } from "../supabase";
 
 export const Training = () => {
@@ -8,9 +8,17 @@ export const Training = () => {
 
   //ここでuseEffectを使用しデータを取得する
 
+  const getData = async () => {
+    console.log(await supabase.from("record").select("*"));
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
+
   return (
     <>
-      <h2>前日の記録</h2>
+      <h2>前回の記録</h2>
 
       <label>筋トレ</label>
       <br />
@@ -23,11 +31,7 @@ export const Training = () => {
 
       <label>食事</label>
       <br />
-      <ul>
-        <li>朝：{meat}</li>
-        <li>昼：{meat}</li>
-        <li>晩：{meat}</li>
-      </ul>
+      {meat}
       <br />
 
       <label>現在体重</label>

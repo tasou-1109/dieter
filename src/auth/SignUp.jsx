@@ -34,7 +34,7 @@ export const SignUp = () => {
 
   //ユーザ情報
   const [mail, setMail] = useState("");
-  // const [name, setName] = useState("");
+  const [name, setName] = useState("");
   const [password, setPassword] = useState("");
 
   //エラー
@@ -42,17 +42,21 @@ export const SignUp = () => {
 
   //入力情報登録
   const handleMailChange = (e) => setMail(e.target.value);
-  // const handleNameChange = (e) => setName(e.target.value);
+  const handleNameChange = (e) => setName(e.target.value);
   const handlePasswordChange = (e) => setPassword(e.target.value);
 
   //作成ボタン押下処理
   const onSignUp = async () => {
     try {
       reset();
-
       const { error } = await supabase.auth.signUp({
         email: mail,
         password: password,
+        options: {
+          data: {
+            Name: name,
+          },
+        },
       });
       if (error) throw error;
       nav("/dieter");
@@ -70,7 +74,7 @@ export const SignUp = () => {
         <p className="error-Mes">{signError}</p>
 
         <form onSubmit={handleSubmit(onSignUp)} className="signup-Form">
-          {/* <br />
+          <br />
           <label>ユーザ名</label>
           <br />
           <input
@@ -86,7 +90,7 @@ export const SignUp = () => {
           <div id="signup-Form__error_name">
             {errors.name && <span>{errors.name.message}</span>}
           </div>
-          <br /> */}
+          <br />
 
           <label>メールアドレス</label>
           <br />

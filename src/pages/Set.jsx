@@ -1,39 +1,67 @@
 import React, { useEffect, useState } from "react";
 import "./set.scss";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Header } from "../header/Header";
 import { supabase } from "../supabase";
+import Yotei from "./Yotei";
 
 export const Set = () => {
+  const nav = useNavigate();
   //userId取得
   const YoteiState = useLocation();
   const userId = YoteiState.state.id;
+  const date = YoteiState.state.date;
+  const userName = YoteiState.state.name;
 
   //APIでデータを取得する
   const [menu, setMenu] = useState(["a"]);
 
-  const [kin, setKin] = useState([]);
-  const [weight, setWeight] = useState(70);
-  const [meal, setMeal] = useState();
+  const kin = [3];
+  var weight = null;
+  var meal = null;
 
-  const handleKinSet1 = (e) => setKin([...kin, e.target.value]);
-  const handleKinSet2 = (e) => setKin([...kin, e.target.value]);
-  const handleKinSet3 = (e) => setKin([...kin, e.target.value]);
+  const handleKinSet1 = (e) => {
+    kin[0] = e.target.value;
+    console.log(kin[0]);
+  };
+  const handleKinSet2 = (e) => {
+    kin[1] = e.target.value;
+    console.log(kin[0]);
+  };
+  const handleKinSet3 = (e) => {
+    kin[2] = e.target.value;
+    console.log(kin[0]);
+  };
 
-  const handleMealSet = (e) => setMeal(e.target.value);
+  const handleMealSet = (e) => {
+    meal = e.target.value;
+    console.log(meal);
+  };
 
-  const handleWeightChange = (e) => setWeight(e.target.value);
+  const handleWeightChange = (e) => {
+    weight = e.target.value;
+    console.log(weight);
+  };
 
   const handleDataSet = async () => {
-    const { data, error } = await supabase.from("record").insert({
-      user_id: userId,
-      day: new Date(),
-      kin_menu1: kin[0],
-      kin_menu2: kin[1],
-      kin_menu13: kin[2],
-      meal: meal,
-      weight: weight,
-    });
+    try {
+      const { data, error } = await supabase.from("record").insert([
+        {
+          user_id: userId,
+          day: date,
+          kin_menu1: kin[0],
+          kin_menu2: kin[1],
+          kin_menu3: kin[2],
+          meal: meal,
+          weight: weight,
+          user_Name: userName,
+        },
+      ]);
+      // .select();
+      nav("/dieter");
+    } catch (error) {
+      alert(error.message);
+    }
     // .select();
   };
 
@@ -48,7 +76,7 @@ export const Set = () => {
         <input
           type="text"
           onChange={(e) => handleKinSet1(e)}
-          list="training__list"
+          // list="training__list"
           className="training__choice"
         />
         <br />
@@ -56,7 +84,7 @@ export const Set = () => {
         <input
           type="text"
           onChange={(e) => handleKinSet2(e)}
-          list="training__list"
+          // list="training__list"
           className="training__choice"
         />
         <br />
@@ -64,15 +92,15 @@ export const Set = () => {
         <input
           type="text"
           onChange={(e) => handleKinSet3(e)}
-          list="training__list"
+          // list="training__list"
           className="training__choice"
         />
         <br />
-        <datalist id="training__list">
+        {/* <datalist id="training__list">
           {menu.map((menu) => {
             return <option key={menu}>{menu}</option>;
           })}
-        </datalist>
+        </datalist> */}
         <br />
         <label className="meal__title">食事内容</label>
         <br />
