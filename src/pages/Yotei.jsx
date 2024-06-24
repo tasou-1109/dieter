@@ -10,12 +10,12 @@ export const Yotei = (info) => {
   //認証情報とuserIdの取得
   const auth = info["auth"];
   const userId = info["userId"];
-  const userName = info["name"];
+  const userName = info["userName"];
   const nav = useNavigate();
 
   const handleEventSecrect = (date) => {
     nav(`/dieter/Set/${date}`, {
-      state: { id: userId, date: date, name: userName },
+      state: { id: userId, date: date, userName: userName },
     });
     // console.log(date);
   };
@@ -43,5 +43,3 @@ export const Yotei = (info) => {
     </div>
   );
 };
-
-export default Yotei;

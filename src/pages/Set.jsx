@@ -11,7 +11,7 @@ export const Set = () => {
   const YoteiState = useLocation();
   const userId = YoteiState.state.id;
   const date = YoteiState.state.date;
-  const userName = YoteiState.state.name;
+  const userName = YoteiState.state.userName;
 
   //APIでデータを取得する
   const [menu, setMenu] = useState(["a"]);
@@ -22,25 +22,25 @@ export const Set = () => {
 
   const handleKinSet1 = (e) => {
     kin[0] = e.target.value;
-    console.log(kin[0]);
+    // console.log(kin[0]);
   };
   const handleKinSet2 = (e) => {
     kin[1] = e.target.value;
-    console.log(kin[0]);
+    // console.log(kin[0]);
   };
   const handleKinSet3 = (e) => {
     kin[2] = e.target.value;
-    console.log(kin[0]);
+    // console.log(kin[0]);
   };
 
   const handleMealSet = (e) => {
     meal = e.target.value;
-    console.log(meal);
+    // console.log(meal);
   };
 
   const handleWeightChange = (e) => {
     weight = e.target.value;
-    console.log(weight);
+    // console.log(weight);
   };
 
   const handleDataSet = async () => {
@@ -57,12 +57,10 @@ export const Set = () => {
           user_Name: userName,
         },
       ]);
-      // .select();
       nav("/dieter");
     } catch (error) {
       alert(error.message);
     }
-    // .select();
   };
 
   return (
@@ -125,5 +123,3 @@ export const Set = () => {
     </>
   );
 };
-
-export default Set;

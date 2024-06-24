@@ -33,7 +33,7 @@ export const Home = () => {
     <div>
       <Header />
       <main className="main">
-        <Yotei userId={user} auth={auth} name={userName} />
+        <Yotei userId={user} auth={auth} userName={userName} />
         <br />
 
         {auth ? (
@@ -47,5 +47,3 @@ export const Home = () => {
     </div>
   );
 };
-
-export default Home;

@@ -121,5 +121,3 @@ export const LogIn = () => {
     </div>
   );
 };
-
-export default LogIn;
