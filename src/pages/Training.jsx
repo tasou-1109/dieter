@@ -1,42 +1,91 @@
 import React, { useEffect, useState } from "react";
+import "./training.scss";
 import { supabase } from "../supabase";
+import { useNavigate } from "react-router-dom";
 
-export const Training = () => {
+export const Training = (info) => {
+  const userId = info["userId"];
+  const auth = info["auth"];
+  const userName = info["userName"];
+
+  const [menus, setMenus] = useState([]);
+
+  const nav = useNavigate();
+
   const [kin, setKin] = useState([]);
-  const [meat, setMeat] = useState([]); //のちのちAPIでデータを取得する。もしデータが存在しない場合は空で出力する
-  const [tai, setTai] = useState(70);
+  const [meat, setMeat] = useState(); //のちのちAPIでデータを取得する。もしデータが存在しない場合は空で出力する
+  const [weight, setWeight] = useState(70);
 
   //ここでuseEffectを使用しデータを取得する
-
   const getData = async () => {
-    console.log(await supabase.from("record").select("*"));
+    try {
+      const { data, error } = await supabase
+        .from("record")
+        .select("*")
+        .eq("user_Name", userName)
+        .order("day", { ascending: false })
+        .limit(14);
+
+      console.log(data);
+      setMenus(data);
+    } catch (error) {
+      alert(error.message);
+    }
   };
 
   useEffect(() => {
-    getData();
-  }, []);
+    if (userName != null) {
+      getData();
+    }
+  }, [userName]);
+
+  // const seikei = menu.map((menu) => ({
+  //   limit: new Date(menu.day.slice(0, 7)),
+  // }));
+
+  // const seikei2 = seikei.map((seikei) => ({
+  //   hyouji:
+  //     seikei.limit.getFullYear() +
+  //     "年" +
+  //     seikei.limit.getMonth() +
+  //     "月" +
+  //     seikei.limit.getDate() +
+  //     "日 ",
+  // }));
+
+  // console.log(seikei2);
+
+  const handleDetail = (date) => {
+    nav(`/dieter/Detail/${date}`, {
+      state: { menus: menus },
+    });
+  };
 
   return (
     <>
-      <h2>前回の記録</h2>
-
-      <label>筋トレ</label>
-      <br />
-      <ul>
-        {kin.map((kin) => {
-          return <li>{kin}</li>;
+      <h2 className="training__title">記録一覧</h2>
+      <ul className="training__ul" role="tablist">
+        {menus.map((menu) => {
+          return (
+            <>
+              <li id="list" key={menu.record_id} className="training__list">
+                {menu.day}&nbsp;&nbsp;
+                {menu.weight}kg&nbsp;&nbsp;
+                {menu.kin_menu1}&nbsp;
+                {menu.kin_menu2}&nbsp;
+                {menu.kin_menu3}&nbsp;&nbsp;
+              </li>
+              {console.log(menu.record_id)}
+              <button
+                onClick={() => handleDetail(menu.day)}
+                className="training__button"
+              >
+                詳細へ
+              </button>
+            </>
+          );
         })}
       </ul>
-      <br />
-
-      <label>食事</label>
-      <br />
-      {meat}
-      <br />
-
-      <label>現在体重</label>
-      <br />
-      <>{tai}kg</>
     </>
   );
 };

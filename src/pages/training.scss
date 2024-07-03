@@ -1,0 +1,31 @@
+.training__label {
+  font-size: large;
+  margin: 0 0 0 80px;
+}
+
+.training__ul {
+  list-style: none;
+  display: flex;
+  margin-top: 0px;
+  overflow-x: auto;
+  flex-flow: column;
+  height: 300px;
+
+  .training__list {
+    width: 550px;
+    font-size: 20px;
+    height: 40px;
+    padding: 0 0px 30px 20px;
+    text-overflow: normal;
+    margin: auto auto auto auto;
+    border: solid 1px #242f9b;
+    float: left;
+  }
+
+  .training__button {
+    width: 200px;
+    margin: auto auto 30px auto;
+    background-color: blue;
+    color: white;
+  }
+}

@@ -6,8 +6,6 @@ import { useNavigate, Link } from "react-router-dom";
 export const Header = () => {
   const nav = useNavigate();
 
-  const [data, setData] = useState(null);
-  const [session, setSession] = useState(null);
   const [auth, setAuth] = useState(null);
 
   const getLogin = async () => {

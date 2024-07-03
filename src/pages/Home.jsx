@@ -38,7 +38,7 @@ export const Home = () => {
 
         {auth ? (
           <div className="main__mem">
-            <Training />
+            <Training userId={user} auth={auth} userName={userName} />
           </div>
         ) : (
           <></>

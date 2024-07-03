@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, Navigate, Route } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import Compressor from "compressorjs";
 import "./signup.scss";
 import { supabase } from "../supabase.js";
 

@@ -3,7 +3,6 @@ import "./set.scss";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Header } from "../header/Header";
 import { supabase } from "../supabase";
-import Yotei from "./Yotei";
 
 export const Set = () => {
   const nav = useNavigate();
@@ -14,7 +13,7 @@ export const Set = () => {
   const userName = YoteiState.state.userName;
 
   //APIでデータを取得する
-  const [menu, setMenu] = useState(["a"]);
+  // const [menu, setMenu] = useState(["a"]);
 
   const kin = [3];
   var weight = null;
