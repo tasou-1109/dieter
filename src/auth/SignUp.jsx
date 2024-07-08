@@ -82,7 +82,7 @@ export const SignUp = () => {
           <input
             {...register("name", {
               required: "名前を入力してください",
-              minLength: { value: 2, message: "2文字以上にしてください" },
+              //minLength: { value: 2, message: "2文字以上にしてください" },
             })}
             className="signup-Form__user-Set"
             type="text"
@@ -99,10 +99,10 @@ export const SignUp = () => {
           <input
             {...register("mail", {
               required: "メアドを入力してください",
-              pattern: {
-                value: /\S+@\S+\.\S+/,
-                message: "メールアドレスの形式が違います",
-              },
+              // pattern: {
+              //   value: /\S+@\S+\.\S+/,
+              //   message: "メールアドレスの形式が違います",
+              // },
             })}
             className="signup-Form__mail-log"
             type="text"
@@ -120,18 +120,18 @@ export const SignUp = () => {
           <input
             {...register("password", {
               required: "パスワードを入力してください",
-              minLength: {
-                value: 8,
-                message: "8文字以上24文字以下にしてください",
-              },
-              maxLength: {
-                value: 24,
-                message: "8文字以上24文字以下にしてください",
-              },
-              pattern: {
-                value: /^[a-zA-Z0-9.?/-]/,
-                message: "パスワードの形式が違います",
-              },
+              // minLength: {
+              //   value: 8,
+              //   message: "8文字以上24文字以下にしてください",
+              // },
+              // maxLength: {
+              //   value: 24,
+              //   message: "8文字以上24文字以下にしてください",
+              // },
+              // pattern: {
+              //   value: /^[a-zA-Z0-9.?/-]/,
+              //   message: "パスワードの形式が違います",
+              // },
             })}
             className="signup-Form__pass-Set"
             type="password"
