@@ -31,14 +31,16 @@ export const LogIn = () => {
   } = useForm();
 
   //ユーザ情報
-  const [mail, setMail] = useState("");
-  const [password, setPassword] = useState("");
+  // const [mail, setMail] = useState("");
+  // const [password, setPassword] = useState("");
+  var mail;
+  var pass;
 
   //エラー
   const [logError, setLogError] = useState();
 
-  const handleMailChange = (e) => setMail(e.target.value);
-  const handlePasswordChange = (e) => setPassword(e.target.value);
+  const handleMailChange = (e) => (mail = e.target.value);
+  const handlePasswordChange = (e) => (pass = e.target.value);
 
   const onLogIn = async () => {
     try {
@@ -46,7 +48,7 @@ export const LogIn = () => {
 
       const { data, error } = await supabase.auth.signInWithPassword({
         email: mail,
-        password: password,
+        password: pass,
       });
       if (error) throw error;
       nav("/dieter");

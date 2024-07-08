@@ -7,6 +7,7 @@ import { SignUp } from "../auth/SignUp";
 import { useEffect, useState } from "react";
 import { supabase } from "../supabase";
 import { DataDetail } from "../pages/DataDetail.jsx";
+import { Edit } from "../pages/Edit.jsx";
 
 export const Router = () => {
   const [auth, setAuth] = useState(null);
@@ -35,6 +36,7 @@ export const Router = () => {
             <Route path="/dieter" element={<Home />} />
             <Route path="/dieter/Set/:date" element={<Set />} />
             <Route path="/dieter/Detail/:date" element={<DataDetail />} />
+            <Route path="/dieter/Edit/:day" element={<Edit />} />
           </>
         ) : (
           <>

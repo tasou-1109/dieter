@@ -64,7 +64,9 @@ export const Set = () => {
 
   return (
     <>
-      <Header />
+      <header className="header">
+        <h1>記録ページ</h1>
+      </header>
       <div className="set-main">
         <h1 className="title">記録</h1>
         <label className="training__label">トレーニング内容</label>

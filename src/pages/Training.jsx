@@ -12,10 +12,6 @@ export const Training = (info) => {
 
   const nav = useNavigate();
 
-  const [kin, setKin] = useState([]);
-  const [meat, setMeat] = useState(); //のちのちAPIでデータを取得する。もしデータが存在しない場合は空で出力する
-  const [weight, setWeight] = useState(70);
-
   //ここでuseEffectを使用しデータを取得する
   const getData = async () => {
     try {
@@ -55,9 +51,10 @@ export const Training = (info) => {
 
   // console.log(seikei2);
 
-  const handleDetail = (date) => {
+  const handleDetail = (date, menu) => {
+    console.log(menu);
     nav(`/dieter/Detail/${date}`, {
-      state: { menus: menus },
+      state: { menus: menu, userId: userId, userName: userName },
     });
   };
 
@@ -65,19 +62,19 @@ export const Training = (info) => {
     <>
       <h2 className="training__title">記録一覧</h2>
       <ul className="training__ul" role="tablist">
-        {menus.map((menu) => {
+        {menus.map((menu, key) => {
           return (
             <>
-              <li id="list" key={menu.record_id} className="training__list">
+              <li id="list" key={key} className="training__list">
                 {menu.day}&nbsp;&nbsp;
                 {menu.weight}kg&nbsp;&nbsp;
                 {menu.kin_menu1}&nbsp;
                 {menu.kin_menu2}&nbsp;
                 {menu.kin_menu3}&nbsp;&nbsp;
               </li>
-              {console.log(menu.record_id)}
+              {/* {console.log(menu)} */}
               <button
-                onClick={() => handleDetail(menu.day)}
+                onClick={() => handleDetail(menu.day, menu)}
                 className="training__button"
               >
                 詳細へ
