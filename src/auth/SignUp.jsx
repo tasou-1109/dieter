@@ -32,17 +32,20 @@ export const SignUp = () => {
   } = useForm();
 
   //ユーザ情報
-  const [mail, setMail] = useState("");
-  const [name, setName] = useState("");
-  const [password, setPassword] = useState("");
+  // const [mail, setMail] = useState("");
+  // const [name, setName] = useState("");
+  // const [password, setPassword] = useState("");
+  var mail;
+  var name;
+  var pass;
 
   //エラー
   const [signError, setSignError] = useState("");
 
   //入力情報登録
-  const handleMailChange = (e) => setMail(e.target.value);
-  const handleNameChange = (e) => setName(e.target.value);
-  const handlePasswordChange = (e) => setPassword(e.target.value);
+  const handleMailChange = (e) => (mail = e.target.value);
+  const handleNameChange = (e) => (name = e.target.value);
+  const handlePasswordChange = (e) => (pass = e.target.value);
 
   //作成ボタン押下処理
   const onSignUp = async () => {
@@ -50,7 +53,7 @@ export const SignUp = () => {
       reset();
       const { error } = await supabase.auth.signUp({
         email: mail,
-        password: password,
+        password: pass,
         options: {
           data: {
             Name: name,
