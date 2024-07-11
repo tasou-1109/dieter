@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import "./login.scss";
 import { supabase } from "../supabase";
 
-export const LogIn = () => {
+export const Login = () => {
   const nav = useNavigate();
 
   const [auth, setAuth] = useState(null);
@@ -34,22 +34,27 @@ export const LogIn = () => {
   // const [mail, setMail] = useState("");
   // const [password, setPassword] = useState("");
   var mail;
-  var pass;
+  var password;
 
   //エラー
   const [logError, setLogError] = useState();
 
-  const handleMailChange = (e) => (mail = e.target.value);
-  const handlePasswordChange = (e) => (pass = e.target.value);
+  const handleMailChange = (e) => {
+    mail = e.target.value;
+    console.log(mail);
+  };
+  const handlePasswordChange = (e) => {
+    password = e.target.value;
+    console.log(password);
+  };
 
   const onLogIn = async () => {
     try {
-      reset();
-
       const { data, error } = await supabase.auth.signInWithPassword({
         email: mail,
-        password: pass,
+        password: password,
       });
+      reset();
       if (error) throw error;
       nav("/dieter");
     } catch (error) {

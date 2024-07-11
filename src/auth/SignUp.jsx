@@ -51,15 +51,18 @@ export const SignUp = () => {
   const onSignUp = async () => {
     try {
       reset();
-      const { error } = await supabase.auth.signUp({
-        email: mail,
-        password: pass,
-        options: {
-          data: {
-            Name: name,
+      const { error } = await supabase.auth.signUp(
+        {
+          email: mail,
+          password: pass,
+          options: {
+            data: {
+              Name: name,
+            },
           },
         },
-      });
+        { disableEmailConfirmation: true }
+      );
       if (error) throw error;
       nav("/dieter");
     } catch (error) {

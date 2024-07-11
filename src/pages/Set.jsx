@@ -63,7 +63,7 @@ export const Set = () => {
   };
 
   return (
-    <>
+    <div className="main">
       <header className="header">
         <h1>記録ページ</h1>
       </header>
@@ -121,6 +121,6 @@ export const Set = () => {
           記録
         </button>
       </div>
-    </>
+    </div>
   );
 };

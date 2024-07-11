@@ -30,6 +30,7 @@ export const Yotei = (info) => {
           locale="ja"
           selectable={true}
           dateClick={(e) => handleEventSecrect(e.dateStr)}
+          className="calender"
         />
       ) : (
         <FullCalendar
@@ -38,6 +39,7 @@ export const Yotei = (info) => {
           locales={[jaLocale]} // 追加
           locale="ja"
           selectable={true}
+          className="calender"
         />
       )}
     </div>
