@@ -30,9 +30,9 @@ export const Home = () => {
   }, []);
 
   return (
-    <div className="main">
+    <div>
       <Header />
-      <main className="main__home">
+      <main className="main">
         <Yotei userId={user} auth={auth} userName={userName} />
         <br />
 

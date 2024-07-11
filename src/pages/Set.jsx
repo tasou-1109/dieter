@@ -15,9 +15,13 @@ export const Set = () => {
   //APIでデータを取得する
   // const [menu, setMenu] = useState(["a"]);
 
-  const kin = [3];
+  const kin = [];
   var weight = null;
   var meal = null;
+
+  const handleHome = () => {
+    nav("/dieter");
+  };
 
   const handleKinSet1 = (e) => {
     kin[0] = e.target.value;
@@ -63,11 +67,14 @@ export const Set = () => {
   };
 
   return (
-    <div className="main">
+    <div>
       <header className="header">
         <h1>記録ページ</h1>
+        <button onClick={(e) => handleHome(e)} className="header__signOut">
+          ホームへ
+        </button>
       </header>
-      <div className="set-main">
+      <div className="main">
         <h1 className="title">記録</h1>
         <label className="training__label">トレーニング内容</label>
         <br />

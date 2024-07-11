@@ -60,7 +60,7 @@ export const DataDetail = () => {
   };
 
   return (
-    <div>
+    <div className="">
       {console.log(menus)}
       <header className="header">
         <h1>記録詳細ページ</h1>
