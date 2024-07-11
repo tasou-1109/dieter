@@ -66,7 +66,7 @@ export const Login = () => {
 
   return (
     <div>
-      <main className="login">
+      <main className="main">
         <h2>ログイン</h2>
         <p id="error">{logError}</p>
 
