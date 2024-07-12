@@ -1,5 +1,6 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { supabase } from "../supabase";
+import "./edit.scss";
 
 export const Edit = () => {
   const nav = useNavigate();
@@ -7,12 +8,16 @@ export const Edit = () => {
   const data = useLocation();
   const menus = data.state.menus;
 
-  const kin = [3];
+  const kin = [];
   kin[0] = menus.kin_menu1;
   kin[1] = menus.kin_menu2;
   kin[2] = menus.kin_menu3;
   var meal = menus.meal;
   var weight = menus.weight;
+
+  const handleHome = () => {
+    nav("/dieter");
+  };
 
   const handleKinEdit1 = (e) => {
     kin[0] = e.target.value;
@@ -66,8 +71,11 @@ export const Edit = () => {
     <div>
       <header className="header">
         <h1>編集ページ</h1>
+        <button onClick={(e) => handleHome(e)} className="header__signOut">
+          ホームへ
+        </button>
       </header>
-      <div className="set-main">
+      <div className="main">
         <h1 className="title">編集</h1>
         <label className="training__label">トレーニング内容</label>
         <br />
@@ -115,10 +123,10 @@ export const Edit = () => {
         <label className="body__weight">現在体重</label>
         <br />
         <input
-          type="text"
+          type="number"
           onChange={(e) => handleWeightEdit(e)}
           defaultValue={weight}
-          className="body__weight-set"
+          className="body__weight-edit"
         />
         kg
         <br />
