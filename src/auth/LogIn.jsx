@@ -76,13 +76,13 @@ export const Login = () => {
           <input
             {...register("mail", {
               required: "メアドを入力してください",
-              pattern: {
-                value: /\S+@\S+\.\S+/,
-                message: "メールアドレスの形式が違います",
-              },
+              // pattern: {
+              //   value: /\S+@\S+\.\S+/,
+              //   message: "メールアドレスの形式が違います",
+              // },
             })}
-            id="login-Form__email-Set"
             type="text"
+            className="login-Form__email-Set"
             onChange={(e) => handleMailChange(e)}
             aria-label="mailLog"
           />
@@ -96,21 +96,21 @@ export const Login = () => {
           <input
             {...register("password", {
               required: "パスワードを入力してください",
-              minLength: {
-                value: 8,
-                message: "8文字以上24文字以下にしてください",
-              },
-              maxLength: {
-                value: 24,
-                message: "8文字以上24文字以下にしてください",
-              },
-              pattern: {
-                value: /^[a-zA-Z0-9.?/-]/,
-                message: "パスワードの形式が違います",
-              },
+              // minLength: {
+              //   value: 8,
+              //   message: "8文字以上24文字以下にしてください",
+              // },
+              // maxLength: {
+              //   value: 24,
+              //   message: "8文字以上24文字以下にしてください",
+              // },
+              // pattern: {
+              //   value: /^[a-zA-Z0-9.?/-]/,
+              //   message: "パスワードの形式が違います",
+              // },
             })}
-            id="login-Form__password-Set"
-            type="text"
+            className="login-Form__password-Set"
+            type="password"
             onChange={(e) => handlePasswordChange(e)}
             aria-label="passLog"
           />

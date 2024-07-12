@@ -64,6 +64,7 @@ export const SignUp = () => {
         { disableEmailConfirmation: true }
       );
       if (error) throw error;
+      alert("確認メールが送信されました。確認後にログインしてください");
       nav("/dieter");
     } catch (error) {
       alert(error.message);
