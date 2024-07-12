@@ -52,7 +52,7 @@ export const Training = (info) => {
   // console.log(seikei2);
 
   const handleDetail = (date, menu) => {
-    console.log(menu);
+    console.log(date, menu);
     nav(`/dieter/Detail/${date}`, {
       state: { menus: menu, userId: userId, userName: userName },
     });
