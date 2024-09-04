@@ -1,4 +1,4 @@
-import "./header.scss";
+//import "./header.scss";
 import React, { useEffect, useState } from "react";
 import { supabase } from "../supabase";
 import { useNavigate, Link } from "react-router-dom";

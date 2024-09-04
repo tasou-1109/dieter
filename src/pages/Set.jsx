@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./set.scss";
+import "../scss/set.scss";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Header } from "../header/Header";
 import { supabase } from "../supabase";

@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/dieter/static/css/main.e8aea5a3.css",
+    "main.css": "/dieter/static/css/main.aea9484f.css",
     "main.js": "/dieter/static/js/main.b17bc368.js",
     "static/js/952.35651b33.chunk.js": "/dieter/static/js/952.35651b33.chunk.js",
     "static/js/453.0193d589.chunk.js": "/dieter/static/js/453.0193d589.chunk.js",
     "index.html": "/dieter/index.html",
-    "main.e8aea5a3.css.map": "/dieter/static/css/main.e8aea5a3.css.map",
+    "main.aea9484f.css.map": "/dieter/static/css/main.aea9484f.css.map",
     "main.b17bc368.js.map": "/dieter/static/js/main.b17bc368.js.map",
     "952.35651b33.chunk.js.map": "/dieter/static/js/952.35651b33.chunk.js.map",
     "453.0193d589.chunk.js.map": "/dieter/static/js/453.0193d589.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.e8aea5a3.css",
+    "static/css/main.aea9484f.css",
     "static/js/main.b17bc368.js"
   ]
 }

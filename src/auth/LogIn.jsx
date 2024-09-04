@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 // import { useCookies } from "react-cookie";
 import { useNavigate, Link, Navigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import "./login.scss";
+import "../scss/login.scss";
 import { supabase } from "../supabase";
 
 export const Login = () => {

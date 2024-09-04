@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 // import { Set } from "./Set.jsx";
 import { Training } from "./Training";
 import { Yotei } from "./Yotei";
-import "./home.scss";
+//import "../scss/all.scss";
 import { Header } from "../header/Header";
 import { supabase } from "../supabase";
 

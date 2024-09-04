@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, Navigate, Route } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import "./signup.scss";
+import "../scss/signup.scss";
 import { supabase } from "../supabase.js";
 
 export const SignUp = () => {

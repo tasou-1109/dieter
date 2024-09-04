@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { supabase } from "../supabase";
-import "./detaDetail.scss";
+import "../scss/detaDetail.scss";
 
 export const DataDetail = () => {
   const data = useLocation();

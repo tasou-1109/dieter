@@ -1,6 +1,6 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { supabase } from "../supabase";
-import "./edit.scss";
+import "../scss/edit.scss";
 
 export const Edit = () => {
   const nav = useNavigate();

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./training.scss";
+//import "./training.scss";
 import { supabase } from "../supabase";
 import { useNavigate } from "react-router-dom";
 
