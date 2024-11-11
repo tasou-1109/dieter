@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "../scss/set.scss";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Header } from "../header/Header";
-import { supabase } from "../supabase";
+import { supabase } from "../../supabase";
 
 export const Set = () => {
   const nav = useNavigate();

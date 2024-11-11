@@ -4,7 +4,7 @@ import { Training } from "./Training";
 import { Yotei } from "./Yotei";
 //import "../scss/all.scss";
 import { Header } from "../header/Header";
-import { supabase } from "../supabase";
+import { supabase } from "../../supabase";
 
 export const Home = () => {
   const [auth, setAuth] = useState(null);

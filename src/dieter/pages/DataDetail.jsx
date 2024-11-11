@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { supabase } from "../supabase";
+import { supabase } from "../../supabase";
 import "../scss/detaDetail.scss";
 
 export const DataDetail = () => {

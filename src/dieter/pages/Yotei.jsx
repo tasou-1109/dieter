@@ -4,7 +4,7 @@ import interactionPlugin from "@fullcalendar/interaction";
 import jaLocale from "@fullcalendar/core/locales/ja";
 import { useNavigate } from "react-router-dom";
 import React from "react";
-import { supabase } from "../supabase";
+import { supabase } from "../../supabase";
 
 export const Yotei = (info) => {
   //認証情報とuserIdの取得

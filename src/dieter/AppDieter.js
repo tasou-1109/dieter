@@ -1,7 +1,7 @@
 import { Router } from "./Router/Router";
 import "./scss/all.scss";
 
-function App() {
+function AppDieter() {
   return (
     <div>
       <Router />
@@ -9,4 +9,4 @@ function App() {
   );
 }
 
-export default App;
+export default AppDieter;

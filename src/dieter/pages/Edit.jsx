@@ -1,5 +1,5 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import { supabase } from "../supabase";
+import { supabase } from "../../supabase";
 import "../scss/edit.scss";
 
 export const Edit = () => {

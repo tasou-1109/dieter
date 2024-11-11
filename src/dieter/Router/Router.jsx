@@ -5,9 +5,10 @@ import { Set } from "../pages/Set";
 import { Login } from "../auth/Login.jsx";
 import { SignUp } from "../auth/SignUp";
 import { useEffect, useState } from "react";
-import { supabase } from "../supabase";
+import { supabase } from "../../supabase.js";
 import { DataDetail } from "../pages/DataDetail.jsx";
 import { Edit } from "../pages/Edit.jsx";
+import { App } from "../../culinaryMate/App.js";
 
 export const Router = () => {
   const [auth, setAuth] = useState(null);
@@ -29,14 +30,13 @@ export const Router = () => {
       <Routes>
         <Route path="/dieter/Login" element={<Login />} />
         <Route path="/dieter/SignUp" element={<SignUp />} />
-        {/* <Route path="/dieter" element={<Home />} />
-        <Route path="/dieter/Set/:date" element={<Set />} /> */}
         {auth ? (
           <>
             <Route path="/dieter" element={<Home />} />
             <Route path="/dieter/Set/:date" element={<Set />} />
             <Route path="/dieter/Detail/:date" element={<DataDetail />} />
             <Route path="/dieter/Edit/:day" element={<Edit />} />
+            <Route path="/dieter/culinaryMate" element={<App />} />
           </>
         ) : (
           <>

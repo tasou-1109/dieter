@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from "react";
-import { useNavigate, Navigate, Route } from "react-router-dom";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+// import axios from "axios";
+// import { useCookies } from "react-cookie";
+import { useNavigate, Link, Navigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import "../scss/signup.scss";
-import { supabase } from "../supabase.js";
+import "../scss/login.scss";
+import { supabase } from "../../supabase";
 
-export const SignUp = () => {
-  //ページ移動用
+export const Login = () => {
   const nav = useNavigate();
 
   const [auth, setAuth] = useState(null);
@@ -23,7 +23,6 @@ export const SignUp = () => {
     getLogin();
   }, []);
 
-  //バリデーション用
   const {
     register,
     handleSubmit,
@@ -33,38 +32,30 @@ export const SignUp = () => {
 
   //ユーザ情報
   // const [mail, setMail] = useState("");
-  // const [name, setName] = useState("");
   // const [password, setPassword] = useState("");
   var mail;
-  var name;
-  var pass;
+  var password;
 
   //エラー
-  const [signError, setSignError] = useState("");
+  const [logError, setLogError] = useState();
 
-  //入力情報登録
-  const handleMailChange = (e) => (mail = e.target.value);
-  const handleNameChange = (e) => (name = e.target.value);
-  const handlePasswordChange = (e) => (pass = e.target.value);
+  const handleMailChange = (e) => {
+    mail = e.target.value;
+    console.log(mail);
+  };
+  const handlePasswordChange = (e) => {
+    password = e.target.value;
+    console.log(password);
+  };
 
-  //作成ボタン押下処理
-  const onSignUp = async () => {
+  const onLogIn = async () => {
     try {
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email: mail,
+        password: password,
+      });
       reset();
-      const { error } = await supabase.auth.signUp(
-        {
-          email: mail,
-          password: pass,
-          options: {
-            data: {
-              Name: name,
-            },
-          },
-        },
-        { disableEmailConfirmation: true }
-      );
       if (error) throw error;
-      alert("確認メールが送信されました。確認後にログインしてください");
       nav("/dieter");
     } catch (error) {
       alert(error.message);
@@ -76,28 +67,10 @@ export const SignUp = () => {
   return (
     <div>
       <main className="main">
-        <h2>新規作成</h2>
-        <p className="error-Mes">{signError}</p>
+        <h2>ログイン</h2>
+        <p id="error">{logError}</p>
 
-        <form onSubmit={handleSubmit(onSignUp)} className="signup-Form">
-          <br />
-          <label>ユーザ名</label>
-          <br />
-          <input
-            {...register("name", {
-              required: "名前を入力してください",
-              //minLength: { value: 2, message: "2文字以上にしてください" },
-            })}
-            className="signup-Form__user-Set"
-            type="text"
-            onChange={(e) => handleNameChange(e)}
-            id="signup-Form__name-Set"
-          />
-          <div id="signup-Form__error_name">
-            {errors.name && <span>{errors.name.message}</span>}
-          </div>
-          <br />
-
+        <form onSubmit={handleSubmit(onLogIn)} className="login-Form">
           <label>メールアドレス</label>
           <br />
           <input
@@ -108,19 +81,18 @@ export const SignUp = () => {
               //   message: "メールアドレスの形式が違います",
               // },
             })}
-            className="signup-Form__mail-log"
             type="text"
+            className="login-Form__email-Set"
             onChange={(e) => handleMailChange(e)}
+            aria-label="mailLog"
           />
-          <div id="signup-Form__error_mail">
+          <div id="login-Form__errorM">
             {errors.mail && <span>{errors.mail.message}</span>}
           </div>
           <br />
-
           <br />
           <label>パスワード</label>
           <br />
-
           <input
             {...register("password", {
               required: "パスワードを入力してください",
@@ -137,26 +109,21 @@ export const SignUp = () => {
               //   message: "パスワードの形式が違います",
               // },
             })}
-            className="signup-Form__pass-Set"
+            className="login-Form__password-Set"
             type="password"
             onChange={(e) => handlePasswordChange(e)}
+            aria-label="passLog"
           />
-          <div id="signup-Form__error_pass">
+          <div id="login-Form__errorP">
             {errors.password && <span>{errors.password.message}</span>}
           </div>
           <br />
-
           <br />
-          <input
-            type="submit"
-            value="作成"
-            id="signup-Form__sign-Button"
-          ></input>
+          <input type="submit" id="login-Form__login-Button" value="ログイン" />
         </form>
+
         <br />
-        <Link to="/dieter/Login" id="link-Log">
-          ログイン
-        </Link>
+        <Link to="/dieter/SignUp">新規作成</Link>
       </main>
     </div>
   );
