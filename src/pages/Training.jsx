@@ -72,7 +72,6 @@ export const Training = (info) => {
                 {menu.kin_menu2}&nbsp;
                 {menu.kin_menu3}&nbsp;&nbsp;
               </li>
-              {/* {console.log(menu)} */}
               <button
                 onClick={() => handleDetail(menu.day, menu)}
                 className="training__button"

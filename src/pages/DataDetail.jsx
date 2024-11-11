@@ -5,40 +5,13 @@ import "../scss/detaDetail.scss";
 
 export const DataDetail = () => {
   const data = useLocation();
-  const userId = data.state.userId;
-  const userName = data.state.userName;
+  // const userId = data.state.userId;
+  // const userName = data.state.userName;
   const menus = data.state.menus;
   const deleteId = menus.record_id;
   const day = menus.day;
 
-  // const [menus, setMenus] = useState([]);
-
   const nav = useNavigate();
-
-  // const getData = async () => {
-  //   try {
-  //     const { data, error } = await supabase
-  //       .from("record")
-  //       .select("*")
-  //       .eq("user_Name", userName)
-  //       .eq("day", day);
-
-  //     // setMenus(data);
-  //     menus = data;
-  //     console.log(data);
-  //     console.log(menus);
-  //   } catch (error) {
-  //     alert(error.message);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   if (menus.length == 0) {
-  //     getData();
-  //     // console.log(menus[0]);
-  //   }
-  //   console.log(menus);
-  // }, [menus]);
 
   const handleHome = () => {
     nav("/dieter");
