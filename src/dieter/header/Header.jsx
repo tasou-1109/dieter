@@ -28,7 +28,6 @@ export const Header = () => {
     } catch (error) {
       alert(error.message);
     }
-    // Nav("/dieter/Login");
   };
 
   const handleLogin = () => {
