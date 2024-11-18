@@ -38,6 +38,10 @@ export const Header = () => {
     nav("/dieter/culinaryMate");
   };
 
+  const handleTrainingRoute = () => {
+    nav("/dieter/Training");
+  };
+
   return (
     <>
       <header className="header">
@@ -52,6 +56,7 @@ export const Header = () => {
               サインアウト
             </button>
             <button onClick={() => handleCulinaryMate()}>食材管理へ</button>
+            <button onClick={() => handleTrainingRoute()}> 筋トレ管理へ</button>
           </>
         ) : (
           <>

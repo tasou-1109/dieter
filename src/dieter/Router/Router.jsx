@@ -9,6 +9,7 @@ import { supabase } from "../../supabase.js";
 import { DataDetail } from "../pages/DataDetail.jsx";
 import { Edit } from "../pages/Edit.jsx";
 import { App } from "../../culinaryMate/App.js";
+import { Training } from "../pages/TrainingSet.jsx";
 
 export const Router = () => {
   const [auth, setAuth] = useState(null);
@@ -36,6 +37,9 @@ export const Router = () => {
             <Route path="/dieter/Set/:date" element={<Set />} />
             <Route path="/dieter/Detail/:date" element={<DataDetail />} />
             <Route path="/dieter/Edit/:day" element={<Edit />} />
+            <Route path="/dieter/Training" element={<Training />} />
+
+
             <Route path="/dieter/culinaryMate" element={<App />} />
           </>
         ) : (
