@@ -6,13 +6,23 @@ import { useNavigate, Link } from "react-router-dom";
 export const Header = () => {
   const nav = useNavigate();
 
+  const [userId, setUserId] = useState();
+  const [user_name, setUser_name] = useState();
   const [auth, setAuth] = useState(null);
 
   const getLogin = async () => {
     const { data } = await supabase.auth.getSession(); //メソッドで非同期処理を行う
 
     if (data.session) {
-      setAuth(data.session);
+      if (data.session) {
+        setAuth(data.session.access_token);
+        const a = await supabase.auth.getUser();
+        setUserId(a.data.user.id);
+        setUser_name(a.data.user.user_metadata.Name);
+        console.log(a.data.user.user_metadata.Name);
+      } else {
+        console.log(data);
+      }
     }
   };
 
@@ -35,11 +45,13 @@ export const Header = () => {
   };
 
   const handleCulinaryMate = () => {
-    nav("/dieter/culinaryMate");
+    nav("/culinaryMate");
   };
 
   const handleTrainingRoute = () => {
-    nav("/dieter/Training");
+    nav("/dieter/TrainingSet", {
+      state: { user_id: userId, user_name: user_name },
+    });
   };
 
   return (

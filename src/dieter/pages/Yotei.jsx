@@ -9,15 +9,21 @@ import { supabase } from "../../supabase";
 export const Yotei = (info) => {
   //認証情報とuserIdの取得
   const auth = info["auth"];
-  const userId = info["userId"];
-  const userName = info["userName"];
+  const user_id = info["user_id"];
+  const user_name = info["user_name"];
+  const training = info["training"];
+  //console.log(auth);
   const nav = useNavigate();
 
   const handleEventSecrect = (date) => {
     nav(`/dieter/Set/${date}`, {
-      state: { id: userId, date: date, userName: userName },
+      state: {
+        id: user_id,
+        date: date,
+        user_name: user_name,
+        training: training,
+      },
     });
-    // console.log(date);
   };
 
   return (
@@ -30,7 +36,6 @@ export const Yotei = (info) => {
           locale="ja"
           selectable={true}
           dateClick={(e) => handleEventSecrect(e.dateStr)}
-          // className="calender"
         />
       ) : (
         <FullCalendar
@@ -39,7 +44,6 @@ export const Yotei = (info) => {
           locales={[jaLocale]} // 追加
           locale="ja"
           selectable={true}
-          // className="calender"
         />
       )}
     </div>

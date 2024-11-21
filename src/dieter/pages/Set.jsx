@@ -1,63 +1,76 @@
-import React, { useEffect, useState } from "react";
+import React, { use, useEffect, useState } from "react";
 import "../scss/set.scss";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Header } from "../header/Header";
 import { supabase } from "../../supabase";
 
 export const Set = () => {
+  //ページ移動機能
   const nav = useNavigate();
-  //userId取得
-  const YoteiState = useLocation();
-  const userId = YoteiState.state.id;
-  const date = YoteiState.state.date;
-  const userName = YoteiState.state.userName;
 
-  //APIでデータを取得する
-  // const [menu, setMenu] = useState(["a"]);
+  //データ取得
+  const YoteiState = useLocation(); //Yoteiファイルからのデータ取得
+  const user_id = YoteiState.state.id; //userId取得
+  const date = YoteiState.state.date; //日付取得
+  const user_name = YoteiState.state.user_name; //ユーザ名取得
 
-  const kin = [];
-  var weight = null;
-  var meal = null;
+  const [training, setTraining] = useState([]);
 
+  //トレーニングメニューセットの取得
+  const getTrainingSet = async () => {
+    try {
+      const { data, error } = await supabase
+        .from("workout_menu")
+        .select("*")
+        .eq("user_name", user_name);
+
+      console.log(data);
+      setTraining(data);
+    } catch (error) {
+      alert(error.message);
+    }
+  };
+
+  useEffect(() => {
+    console.log(user_id);
+    if (user_name != null) {
+      getTrainingSet();
+    }
+  }, [user_name]);
+
+  //homeへのページ遷移
   const handleHome = () => {
     nav("/dieter");
   };
 
-  const handleKinSet1 = (e) => {
-    kin[0] = e.target.value;
-    // console.log(kin[0]);
-  };
-  const handleKinSet2 = (e) => {
-    kin[1] = e.target.value;
-    // console.log(kin[0]);
-  };
-  const handleKinSet3 = (e) => {
-    kin[2] = e.target.value;
-    // console.log(kin[0]);
+  var set_name = null;
+  const handleSetName = (e) => {
+    set_name = e.target.value;
   };
 
+  var meal = null; //初期値
+  //食事内容の格納
   const handleMealSet = (e) => {
     meal = e.target.value;
-    // console.log(meal);
   };
 
+  var weight = null; //初期値
+  //体重の格納
   const handleWeightChange = (e) => {
     weight = e.target.value;
-    // console.log(weight);
   };
 
+  //記録データの登録
   const handleDataSet = async () => {
     try {
       const { data, error } = await supabase.from("record").insert([
         {
-          user_id: userId,
+          user_id: user_id,
           day: date,
-          kin_menu1: kin[0],
-          kin_menu2: kin[1],
-          kin_menu3: kin[2],
           meal: meal,
           weight: weight,
-          user_Name: userName,
+          user_name: user_name,
+          set_name: set_name,
         },
       ]);
       nav("/dieter");
@@ -78,35 +91,14 @@ export const Set = () => {
         <h1 className="title">記録</h1>
         <label className="training__label">トレーニング内容</label>
         <br />
-        1:
-        <input
-          type="text"
-          onChange={(e) => handleKinSet1(e)}
-          // list="training__list"
-          className="training__choice"
-        />
+        <label className="training__label">セットを選択してください</label>
+        <select onChange={(e) => handleSetName(e)}>
+          <option value={""}></option>
+          {training.map((training) => (
+            <option key={training}>{training.name}</option>
+          ))}
+        </select>
         <br />
-        2:
-        <input
-          type="text"
-          onChange={(e) => handleKinSet2(e)}
-          // list="training__list"
-          className="training__choice"
-        />
-        <br />
-        3:
-        <input
-          type="text"
-          onChange={(e) => handleKinSet3(e)}
-          // list="training__list"
-          className="training__choice"
-        />
-        <br />
-        {/* <datalist id="training__list">
-          {menu.map((menu) => {
-            return <option key={menu}>{menu}</option>;
-          })}
-        </datalist> */}
         <br />
         <label className="meal__title">食事内容</label>
         <br />

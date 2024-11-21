@@ -5,8 +5,6 @@ import "../scss/detaDetail.scss";
 
 export const DataDetail = () => {
   const data = useLocation();
-  // const userId = data.state.userId;
-  // const userName = data.state.userName;
   const menus = data.state.menus;
   const deleteId = menus.record_id;
   const day = menus.day;
@@ -50,21 +48,9 @@ export const DataDetail = () => {
         </h3>
 
         <h3>
-          筋トレメニュー１：
+          筋トレセット名：
           <br />
-          <div className="main__review">{menus.kin_menu1}</div>
-        </h3>
-
-        <h3>
-          筋トレメニュー２：
-          <br />
-          <div className="main__review">{menus.kin_menu2}</div>
-        </h3>
-
-        <h3>
-          筋トレメニュー３：
-          <br />
-          <div className="main__review">{menus.kin_menu3}</div>
+          <div className="main__review">{menus.set_name}</div>
         </h3>
 
         <h3>

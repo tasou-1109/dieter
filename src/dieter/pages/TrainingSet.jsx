@@ -1,9 +1,14 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { supabase } from "../../supabase";
 
 export const TrainingSet = () => {
   const nav = useNavigate();
+
+  const location = useLocation();
+  const user_id = location.state.user_id;
+  const user_name = location.state.user_name;
+  console.log(user_name);
 
   var menuName;
   var Training_menu1;
@@ -12,7 +17,7 @@ export const TrainingSet = () => {
   var Training_menu4;
 
   const handleHome = () => {
-    nav("/");
+    nav("/dieter");
   };
 
   const handleSetName = (e) => {
@@ -32,13 +37,30 @@ export const TrainingSet = () => {
     Training_menu4 = e.target.value;
   };
 
-  const handleDataSet = () => {};
+  const handleDataSet = async () => {
+    try {
+      const { data, error } = await supabase.from("workout_menu").insert([
+        {
+          user_id: user_id,
+          name: menuName,
+          menu1: Training_menu1,
+          menu2: Training_menu2,
+          menu3: Training_menu3,
+          menu4: Training_menu4,
+          user_name: user_name,
+        },
+      ]);
+      alert("記録完了");
+    } catch (error) {
+      alert(error.message);
+    }
+  };
 
   return (
     <div>
       <header className="header">
         <h1>筋トレメニュー設定ページ</h1>
-        <button onClick={(e) => handleHome(e)} className="header__signOut">
+        <button onClick={() => handleHome()} className="header__signOut">
           ホームへ
         </button>
       </header>
@@ -47,6 +69,13 @@ export const TrainingSet = () => {
         <label className="training__label"></label>
         <br />
         セット名
+        <input
+          type="text"
+          onChange={(e) => handleSetName(e)}
+          className="training__choice"
+        />
+        <br />
+        1:
         <input
           type="text"
           onChange={(e) => handleTrainingSet_1(e)}

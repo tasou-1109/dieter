@@ -1,36 +1,49 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { supabase } from "../../supabase";
 import "../scss/edit.scss";
+import { useState, useEffect } from "react";
 
 export const Edit = () => {
   const nav = useNavigate();
 
   const data = useLocation();
   const menus = data.state.menus;
+  console.log(menus);
 
-  const kin = [];
-  kin[0] = menus.kin_menu1;
-  kin[1] = menus.kin_menu2;
-  kin[2] = menus.kin_menu3;
+  var set_name = menus.set_name;
   var meal = menus.meal;
   var weight = menus.weight;
+  var user_Name = menus.user_Name;
+
+  const [training, setTraining] = useState([]);
+
+  const getTrainingSet = async () => {
+    try {
+      const { data, error } = await supabase
+        .from("workout_menu")
+        .select("*")
+        .eq("user_name", user_Name);
+
+      console.log(data);
+      setTraining(data);
+    } catch (error) {
+      alert(error.message);
+    }
+  };
+
+  useEffect(() => {
+    getTrainingSet();
+  }, [user_Name]);
 
   const handleHome = () => {
     nav("/dieter");
   };
 
-  const handleKinEdit1 = (e) => {
-    kin[0] = e.target.value;
-    console.log(kin[0]);
+  const handleSetEdit = (e) => {
+    set_name = e.target.value;
+    console.log(set_name);
   };
-  const handleKinEdit2 = (e) => {
-    kin[1] = e.target.value;
-    console.log(kin[1]);
-  };
-  const handleKinEdit3 = (e) => {
-    kin[2] = e.target.value;
-    console.log(kin[2]);
-  };
+
   const handleMealEdit = (e) => {
     meal = e.target.value;
     console.log(meal);
@@ -41,21 +54,16 @@ export const Edit = () => {
   };
 
   const handleDataEdit = async () => {
-    console.log(kin[0]);
+    //console.log(kin[0]);
     try {
       const { data, error } = await supabase
         .from("record")
         .update([
           {
-            // day: menus.day,
-            kin_menu1: kin[0],
-            kin_menu2: kin[1],
-            kin_menu3: kin[2],
             meal: meal,
-            // record_id: menus.record_id,
-            // user_Name: menus.user_Name,
             user_id: menus.user_Id,
             weight: weight,
+            set_name: set_name,
           },
         ])
         .eq("record_id", menus.record_id)
@@ -79,38 +87,14 @@ export const Edit = () => {
         <h1 className="title">編集</h1>
         <label className="training__label">トレーニング内容</label>
         <br />
-        1:
-        <input
-          type="text"
-          onChange={(e) => handleKinEdit1(e)}
-          // list="training__list"
-          defaultValue={kin[0]}
-          className="training__choice"
-        />
+        <label className="training__label">セット名を選択してください</label>
+        <select onChange={(e) => handleSetEdit(e)}>
+          <option value={""}></option>
+          {training.map((training, key) => (
+            <option key={key}>{training.name}</option>
+          ))}
+        </select>
         <br />
-        2:
-        <input
-          type="text"
-          onChange={(e) => handleKinEdit2(e)}
-          // list="training__list"
-          defaultValue={kin[1]}
-          className="training__choice"
-        />
-        <br />
-        3:
-        <input
-          type="text"
-          onChange={(e) => handleKinEdit3(e)}
-          // list="training__list"
-          defaultValue={kin[2]}
-          className="training__choice"
-        />
-        <br />
-        {/* <datalist id="training__list">
-          {menu.map((menu) => {
-            return <option key={menu}>{menu}</option>;
-          })}
-        </datalist> */}
         <br />
         <label className="meal__title">食事内容</label>
         <br />
