@@ -35,7 +35,7 @@ export const TrainingSet = () => {
 
   const handleDataSet = async () => {
     try {
-      const { data, error } = await supabase.from("workout_menu").insert([
+      await supabase.from("workout_menu").insert([
         {
           user_id: user_id,
           name: menuName,
