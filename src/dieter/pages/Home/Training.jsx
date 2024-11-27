@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { supabase } from "../../supabase";
+import { supabase } from "../../../supabase";
 import { useNavigate } from "react-router-dom";
+import { Select_record } from "../../api_Connect/Select_record";
 
 export const Training = (info) => {
   const user_id = info["user_id"];
@@ -14,25 +15,12 @@ export const Training = (info) => {
 
   //ここでuseEffectを使用しデータを取得する
   const getData = async () => {
-    try {
-      const { data, error } = await supabase
-        .from("record")
-        .select("*")
-        .eq("user_name", user_name)
-        .order("day", { ascending: false })
-        .limit(14);
-
-      console.log(data);
-      setMenus(data);
-    } catch (error) {
-      alert(error.message);
-    }
+    setMenus(await Select_record(user_name));
   };
 
   useEffect(() => {
     if (user_id != null) {
       getData();
-      //console.log(menus);
     }
   }, [user_id]);
 

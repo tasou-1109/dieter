@@ -2,38 +2,30 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { supabase } from "../../supabase";
 import "../scss/edit.scss";
 import { useState, useEffect } from "react";
+import { Select_work_out } from "../api_Connect/Select_work_out";
+import { Header } from "../header/Header";
 
 export const Edit = () => {
   const nav = useNavigate();
 
   const data = useLocation();
   const menus = data.state.menus;
-  console.log(menus);
 
   var set_name = menus.set_name;
   var meal = menus.meal;
   var weight = menus.weight;
-  var user_Name = menus.user_Name;
+  var user_name = menus.user_name;
+  console.log(user_name);
 
-  const [training, setTraining] = useState([]);
+  const [workOut, setWorkOut] = useState([]);
 
-  const getTrainingSet = async () => {
-    try {
-      const { data, error } = await supabase
-        .from("workout_menu")
-        .select("*")
-        .eq("user_name", user_Name);
-
-      console.log(data);
-      setTraining(data);
-    } catch (error) {
-      alert(error.message);
-    }
+  const getWorkOutSet = async () => {
+    setWorkOut(await Select_work_out(user_name));
   };
 
   useEffect(() => {
-    getTrainingSet();
-  }, [user_Name]);
+    getWorkOutSet();
+  }, []);
 
   const handleHome = () => {
     nav("/dieter");
@@ -54,7 +46,6 @@ export const Edit = () => {
   };
 
   const handleDataEdit = async () => {
-    //console.log(kin[0]);
     try {
       const { data, error } = await supabase
         .from("record")
@@ -77,21 +68,16 @@ export const Edit = () => {
 
   return (
     <div>
-      <header className="header">
-        <h1>編集ページ</h1>
-        <button onClick={(e) => handleHome(e)} className="header__signOut">
-          ホームへ
-        </button>
-      </header>
+      <Header title={"記録編集ページ"} />
       <div className="main">
         <h1 className="title">編集</h1>
-        <label className="training__label">トレーニング内容</label>
+        <label className="workOut__label">トレーニング内容</label>
         <br />
-        <label className="training__label">セット名を選択してください</label>
+        <label className="workOut__label">セット名を選択してください</label>
         <select onChange={(e) => handleSetEdit(e)}>
-          <option value={""}></option>
-          {training.map((training, key) => (
-            <option key={key}>{training.name}</option>
+          <option value={""}>{set_name}</option>
+          {workOut.map((workOut, key) => (
+            <option key={key}>{workOut.name}</option>
           ))}
         </select>
         <br />

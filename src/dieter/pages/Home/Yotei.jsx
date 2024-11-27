@@ -4,14 +4,13 @@ import interactionPlugin from "@fullcalendar/interaction";
 import jaLocale from "@fullcalendar/core/locales/ja";
 import { useNavigate } from "react-router-dom";
 import React from "react";
-import { supabase } from "../../supabase";
 
 export const Yotei = (info) => {
   //認証情報とuserIdの取得
   const auth = info["auth"];
   const user_id = info["user_id"];
   const user_name = info["user_name"];
-  const training = info["training"];
+  const workOut = info["workOut"];
   //console.log(auth);
   const nav = useNavigate();
 
@@ -21,7 +20,7 @@ export const Yotei = (info) => {
         id: user_id,
         date: date,
         user_name: user_name,
-        training: training,
+        workOut: workOut,
       },
     });
   };

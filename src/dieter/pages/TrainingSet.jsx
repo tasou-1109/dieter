@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { supabase } from "../../supabase";
+import { Header } from "../header/Header";
 
 export const TrainingSet = () => {
   const nav = useNavigate();
@@ -11,10 +12,10 @@ export const TrainingSet = () => {
   console.log(user_name);
 
   var menuName;
-  var Training_menu1;
-  var Training_menu2;
-  var Training_menu3;
-  var Training_menu4;
+  var workOut_menu1;
+  var workOut_menu2;
+  var workOut_menu3;
+  var workOut_menu4;
 
   const handleHome = () => {
     nav("/dieter");
@@ -25,16 +26,16 @@ export const TrainingSet = () => {
   };
 
   const handleTrainingSet_1 = (e) => {
-    Training_menu1 = e.target.value;
+    workOut_menu1 = e.target.value;
   };
   const handleTrainingSet_2 = (e) => {
-    Training_menu2 = e.target.value;
+    workOut_menu2 = e.target.value;
   };
   const handleTrainingSet_3 = (e) => {
-    Training_menu3 = e.target.value;
+    workOut_menu3 = e.target.value;
   };
   const handleTrainingSet_4 = (e) => {
-    Training_menu4 = e.target.value;
+    workOut_menu4 = e.target.value;
   };
 
   const handleDataSet = async () => {
@@ -43,10 +44,10 @@ export const TrainingSet = () => {
         {
           user_id: user_id,
           name: menuName,
-          menu1: Training_menu1,
-          menu2: Training_menu2,
-          menu3: Training_menu3,
-          menu4: Training_menu4,
+          menu1: workOut_menu1,
+          menu2: workOut_menu2,
+          menu3: workOut_menu3,
+          menu4: workOut_menu4,
           user_name: user_name,
         },
       ]);
@@ -58,12 +59,8 @@ export const TrainingSet = () => {
 
   return (
     <div>
-      <header className="header">
-        <h1>筋トレメニュー設定ページ</h1>
-        <button onClick={() => handleHome()} className="header__signOut">
-          ホームへ
-        </button>
-      </header>
+      <Header title={"筋トレセットページ"} />
+
       <div className="main">
         <h1 className="title">メニュー</h1>
         <label className="training__label"></label>

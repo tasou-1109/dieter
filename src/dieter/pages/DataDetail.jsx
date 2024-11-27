@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { supabase } from "../../supabase";
 import "../scss/detaDetail.scss";
+import { Header } from "../header/Header";
 
 export const DataDetail = () => {
   const data = useLocation();
@@ -32,13 +33,7 @@ export const DataDetail = () => {
 
   return (
     <div className="">
-      {console.log(menus)}
-      <header className="header">
-        <h1>記録詳細ページ</h1>
-        <button onClick={(e) => handleHome(e)} className="header__signOut">
-          ホームへ
-        </button>
-      </header>
+      <Header title={"記録詳細ページ"} />
 
       <main className="main">
         <h3>

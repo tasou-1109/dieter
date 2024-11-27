@@ -3,6 +3,8 @@ import "../scss/set.scss";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Header } from "../header/Header";
 import { supabase } from "../../supabase";
+import { Select_work_out } from "../api_Connect/Select_work_out";
+import { triggerDateSelect } from "@fullcalendar/core/internal";
 
 export const Set = () => {
   //ページ移動機能
@@ -14,27 +16,17 @@ export const Set = () => {
   const date = YoteiState.state.date; //日付取得
   const user_name = YoteiState.state.user_name; //ユーザ名取得
 
-  const [training, setTraining] = useState([]);
+  const [workOut, setWorkOut] = useState([]);
 
   //トレーニングメニューセットの取得
-  const getTrainingSet = async () => {
-    try {
-      const { data, error } = await supabase
-        .from("workout_menu")
-        .select("*")
-        .eq("user_name", user_name);
-
-      console.log(data);
-      setTraining(data);
-    } catch (error) {
-      alert(error.message);
-    }
+  const getWorkOutSet = async () => {
+    setWorkOut(await Select_work_out(user_name));
+    console.log(workOut);
   };
 
   useEffect(() => {
-    console.log(user_id);
     if (user_name != null) {
-      getTrainingSet();
+      getWorkOutSet();
     }
   }, [user_name]);
 
@@ -81,12 +73,7 @@ export const Set = () => {
 
   return (
     <div>
-      <header className="header">
-        <h1>記録ページ</h1>
-        <button onClick={(e) => handleHome(e)} className="header__signOut">
-          ホームへ
-        </button>
-      </header>
+      <Header title={"記録ページ"} />
       <div className="main">
         <h1 className="title">記録</h1>
         <label className="training__label">トレーニング内容</label>
@@ -94,8 +81,8 @@ export const Set = () => {
         <label className="training__label">セットを選択してください</label>
         <select onChange={(e) => handleSetName(e)}>
           <option value={""}></option>
-          {training.map((training) => (
-            <option key={training}>{training.name}</option>
+          {workOut.map((workOut) => (
+            <option key={workOut}>{workOut.name}</option>
           ))}
         </select>
         <br />
