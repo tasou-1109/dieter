@@ -11,7 +11,6 @@ import { Edit } from "../dieter/pages/Edit.jsx";
 import { App } from "../culinaryMate/App.js";
 import { TrainingSet } from "../dieter/pages/TrainingSet.jsx";
 import { TrainingMenus } from "../dieter/pages/TrainingMenus.jsx";
-import { TrainingDetail } from "../dieter/pages/TrainingDetail.jsx";
 import { TrainingEdit } from "../dieter/pages/TrainingEdit.jsx";
 
 export const Router = () => {

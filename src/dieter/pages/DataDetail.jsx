@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { supabase } from "../../supabase";
 import "../scss/detaDetail.scss";
@@ -11,10 +11,6 @@ export const DataDetail = () => {
   const day = menus.day;
 
   const nav = useNavigate();
-
-  const handleHome = () => {
-    nav("/dieter");
-  };
 
   const handleEdit = () => {
     nav(`/dieter/Edit/${day}`, {

@@ -27,9 +27,7 @@ export const Edit = () => {
     getWorkOutSet();
   }, []);
 
-  const handleHome = () => {
-    nav("/dieter");
-  };
+
 
   const handleSetEdit = (e) => {
     set_name = e.target.value;

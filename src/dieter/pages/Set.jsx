@@ -1,10 +1,9 @@
-import React, { use, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../scss/set.scss";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Header } from "../header/Header";
 import { supabase } from "../../supabase";
 import { Select_work_out } from "../api_Connect/Select_work_out";
-import { triggerDateSelect } from "@fullcalendar/core/internal";
 
 export const Set = () => {
   //ページ移動機能
@@ -29,11 +28,6 @@ export const Set = () => {
       getWorkOutSet();
     }
   }, [user_name]);
-
-  //homeへのページ遷移
-  const handleHome = () => {
-    nav("/dieter");
-  };
 
   var set_name = null;
   const handleSetName = (e) => {

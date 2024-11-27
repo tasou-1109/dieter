@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { supabase } from "../../supabase";
 import { Header } from "../header/Header";
@@ -16,10 +15,6 @@ export const TrainingSet = () => {
   var workOut_menu2;
   var workOut_menu3;
   var workOut_menu4;
-
-  const handleHome = () => {
-    nav("/dieter");
-  };
 
   const handleSetName = (e) => {
     menuName = e.target.value;
@@ -52,6 +47,7 @@ export const TrainingSet = () => {
         },
       ]);
       alert("記録完了");
+      nav("/dieter");
     } catch (error) {
       alert(error.message);
     }
