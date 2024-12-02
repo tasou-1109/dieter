@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
-//import "./training.scss";
-import { supabase } from "../supabase";
+import { supabase } from "../../../supabase";
 import { useNavigate } from "react-router-dom";
+import { Select_record } from "../../api_Connect/Select_record";
 
 export const Training = (info) => {
-  const userId = info["userId"];
+  const user_id = info["user_id"];
   const auth = info["auth"];
-  const userName = info["userName"];
+  const user_name = info["user_name"];
+  console.log(user_name);
 
   const [menus, setMenus] = useState([]);
 
@@ -14,47 +15,19 @@ export const Training = (info) => {
 
   //ここでuseEffectを使用しデータを取得する
   const getData = async () => {
-    try {
-      const { data, error } = await supabase
-        .from("record")
-        .select("*")
-        .eq("user_Name", userName)
-        .order("day", { ascending: false })
-        .limit(14);
-
-      console.log(data);
-      setMenus(data);
-    } catch (error) {
-      alert(error.message);
-    }
+    setMenus(await Select_record(user_name));
   };
 
   useEffect(() => {
-    if (userName != null) {
+    if (user_id != null) {
       getData();
     }
-  }, [userName]);
-
-  // const seikei = menu.map((menu) => ({
-  //   limit: new Date(menu.day.slice(0, 7)),
-  // }));
-
-  // const seikei2 = seikei.map((seikei) => ({
-  //   hyouji:
-  //     seikei.limit.getFullYear() +
-  //     "年" +
-  //     seikei.limit.getMonth() +
-  //     "月" +
-  //     seikei.limit.getDate() +
-  //     "日 ",
-  // }));
-
-  // console.log(seikei2);
+  }, [user_id]);
 
   const handleDetail = (date, menu) => {
     console.log(date, menu);
     nav(`/dieter/Detail/${date}`, {
-      state: { menus: menu, userId: userId, userName: userName },
+      state: { menus: menu, user_id: user_id, user_name: user_name },
     });
   };
 
@@ -68,9 +41,7 @@ export const Training = (info) => {
               <li id="list" key={key} className="training__list">
                 {menu.day}&nbsp;&nbsp;
                 {menu.weight}kg&nbsp;&nbsp;
-                {menu.kin_menu1}&nbsp;
-                {menu.kin_menu2}&nbsp;
-                {menu.kin_menu3}&nbsp;&nbsp;
+                {menu.set_name}&nbsp;
               </li>
               <button
                 onClick={() => handleDetail(menu.day, menu)}

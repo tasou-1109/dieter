@@ -1,13 +1,17 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { Home } from "../pages/Home";
-import { Set } from "../pages/Set";
-import { Login } from "../auth/Login.jsx";
-import { SignUp } from "../auth/SignUp";
+import { Home } from "../dieter/pages/Home/Home.jsx";
+import { Set } from "../dieter/pages/Set.jsx";
+import { Login } from "../dieter/auth/Login.jsx";
+import { SignUp } from "../dieter/auth/SignUp.jsx";
 import { useEffect, useState } from "react";
-import { supabase } from "../supabase";
-import { DataDetail } from "../pages/DataDetail.jsx";
-import { Edit } from "../pages/Edit.jsx";
+import { supabase } from "../supabase.js";
+import { DataDetail } from "../dieter/pages/DataDetail.jsx";
+import { Edit } from "../dieter/pages/Edit.jsx";
+import { App } from "../culinaryMate/App.js";
+import { TrainingSet } from "../dieter/pages/TrainingSet.jsx";
+import { TrainingMenus } from "../dieter/pages/TrainingMenus.jsx";
+import { TrainingEdit } from "../dieter/pages/TrainingEdit.jsx";
 
 export const Router = () => {
   const [auth, setAuth] = useState(null);
@@ -29,18 +33,24 @@ export const Router = () => {
       <Routes>
         <Route path="/dieter/Login" element={<Login />} />
         <Route path="/dieter/SignUp" element={<SignUp />} />
-        {/* <Route path="/dieter" element={<Home />} />
-        <Route path="/dieter/Set/:date" element={<Set />} /> */}
         {auth ? (
           <>
             <Route path="/dieter" element={<Home />} />
             <Route path="/dieter/Set/:date" element={<Set />} />
             <Route path="/dieter/Detail/:date" element={<DataDetail />} />
             <Route path="/dieter/Edit/:day" element={<Edit />} />
+            <Route path="/dieter/TrainingMenus" element={<TrainingMenus />} />
+            <Route path="/dieter/TrainingSet" element={<TrainingSet />} />
+
+            <Route
+              path="/dieter/TrainingEdit/:workOut_id"
+              element={<TrainingEdit />}
+            />
+
+            <Route path="/culinaryMate" element={<App />} />
           </>
         ) : (
           <>
-            <Route path="/dieter" element={<Home />} />
             <Route path="/dieter/Login" element={<Login />} />
             <Route path="/dieter/SignUp" element={<SignUp />} />
           </>
