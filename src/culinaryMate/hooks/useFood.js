@@ -1,153 +1,71 @@
-// useFood.js
-import { useState, useCallback } from "react";
-import { supabase } from "../../supabase";
+// src/culinaryMate/hooks/useFood.js
+import { useState, useEffect } from 'react';
 
-export const useFood = () => {
-  const [foodName, setFoodName] = useState("");
-  const [expiryDate, setExpiryDate] = useState("");
-  const [foodCount, setFoodCount] = useState(0);
-  const [editingFood, setEditingFood] = useState(null);
+const useFood = () => {
+  const [foods, setFoods] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  const fetchFoodList = useCallback(async () => {
-    const {
-      data: { user },
-      error: userError,
-    } = await supabase.auth.getUser();
-    if (userError) {
-      alert("ユーザー情報の取得に失敗しました: " + userError.message);
-      return [];
-    }
+  const STORAGE_KEY = 'culinaryMate_foods';
 
-    if (!user) {
-      alert("ユーザーがログインしていません");
-      return [];
-    }
-
-    try {
-      const { data, error } = await supabase
-        .from("foods")
-        .select("*")
-        .eq("user_id", user.id);
-
-      if (error) throw error;
-      return data.map((item, index) => ({ ...item, order: index + 1 }));
-    } catch (error) {
-      alert("データの取得に失敗しました: " + error.message);
-      return [];
-    }
+  useEffect(() => {
+    loadFoods();
   }, []);
 
-  const insertData = async () => {
-    const {
-      data: { user },
-      error: userError,
-    } = await supabase.auth.getUser();
-    if (userError || !user) {
-      alert("ユーザー情報の取得に失敗しました");
-      return false;
+  useEffect(() => {
+    if (!loading) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(foods));
     }
+  }, [foods, loading]);
 
+  const loadFoods = () => {
     try {
-      const { error } = await supabase.from("foods").insert([
-        {
-          user_id: user.id,
-          food_name: foodName,
-          expiry_date: expiryDate,
-          food_count: foodCount,
-        },
-      ]);
-
-      if (error) throw error;
-      alert("データを追加しました");
-      resetForm();
-      return true;
-    } catch (error) {
-      alert("データの追加に失敗しました: " + error.message);
-      return false;
-    }
-  };
-
-  const updateFood = async () => {
-    if (!editingFood || !editingFood.record_id) {
-      console.error("Invalid record_id for update");
-      return false;
-    }
-    try {
-      const {
-        data: { user },
-        error: userError,
-      } = await supabase.auth.getUser();
-      if (userError || !user) {
-        alert("ユーザー情報の取得に失敗しました");
-        return false;
+      const storedFoods = localStorage.getItem(STORAGE_KEY);
+      if (storedFoods) {
+        setFoods(JSON.parse(storedFoods));
       }
-
-      const { error } = await supabase
-        .from("foods")
-        .update({
-          food_name: foodName,
-          expiry_date: expiryDate,
-          food_count: foodCount,
-        })
-        .eq("record_id", editingFood.record_id)
-        .eq("user_id", user.id);
-
-      if (error) throw error;
-      alert("データを更新しました");
-      resetForm();
-      return true;
-    } catch (error) {
-      alert("データの更新に失敗しました: " + error.message);
-      return false;
+      setLoading(false);
+    } catch (err) {
+      setError('食材データの読み込みに失敗しました');
+      setLoading(false);
     }
   };
 
-  const deleteFood = async (record_id) => {
-    if (!record_id) {
-      console.error("Invalid record_id for deletion");
-      return false;
-    }
-    try {
-      const { error } = await supabase
-        .from("foods")
-        .delete()
-        .eq("record_id", record_id);
-      if (error) throw error;
-      alert("データを削除しました");
-      return true;
-    } catch (error) {
-      alert("データの削除に失敗しました: " + error.message);
-      return false;
-    }
+  const addFood = (newFood) => {
+    setFoods(prevFoods => [...prevFoods, { ...newFood, id: Date.now() }]);
   };
 
-  const startEditing = (food) => {
-    setEditingFood(food);
-    setFoodName(food.food_name);
-    setExpiryDate(food.expiry_date);
-    setFoodCount(food.food_count);
+  const updateFood = (updatedFood) => {
+    setFoods(prevFoods =>
+      prevFoods.map(food =>
+        food.id === updatedFood.id ? updatedFood : food
+      )
+    );
   };
 
-  const resetForm = () => {
-    setEditingFood(null);
-    setFoodName("");
-    setExpiryDate("");
-    setFoodCount(0);
+  const deleteFood = (foodId) => {
+    setFoods(prevFoods => prevFoods.filter(food => food.id !== foodId));
+  };
+
+  const getNearExpiryFoods = (days = 3) => {
+    return foods.filter(food => {
+      const expiryDate = new Date(food.expiryDate);
+      const daysUntilExpiry = Math.ceil(
+        (expiryDate - new Date()) / (1000 * 60 * 60 * 24)
+      );
+      return daysUntilExpiry <= days && daysUntilExpiry >= 0;
+    });
   };
 
   return {
-    foodName,
-    setFoodName,
-    expiryDate,
-    setExpiryDate,
-    foodCount,
-    setFoodCount,
-    editingFood,
-    fetchFoodList,
-    insertData,
+    foods,
+    loading,
+    error,
+    addFood,
     updateFood,
     deleteFood,
-    startEditing,
-    resetForm,
+    getNearExpiryFoods
   };
 };
+
+export default useFood;
