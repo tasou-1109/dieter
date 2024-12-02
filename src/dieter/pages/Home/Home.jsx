@@ -5,13 +5,10 @@ import { HomeHeader } from "../../header/HomeHeader";
 import { supabase } from "../../../supabase";
 import { useNavigate } from "react-router-dom";
 import { Select_work_out } from "../../api_Connect/Select_work_out";
-import { TrainingMenus } from "../TrainingMenus";
 
 export const Home = () => {
   const nav = useNavigate();
   const [auth, setAuth] = useState(null);
-
-  var display = true;
 
   const [user, setUser] = useState(null);
   const [user_name, setUser_name] = useState(null);
