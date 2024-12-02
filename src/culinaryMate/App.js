@@ -1,4 +1,5 @@
-// src/culinaryMate/App.js
+// src/culinaate/App.js
+//山﨑氏、ガンバっ!!www
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLocation } from "react-router-dom";
