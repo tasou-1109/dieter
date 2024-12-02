@@ -1,16 +1,21 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { supabase } from "../../supabase";
+import { supabase } from "../supabase";
 import "../scss/detaDetail.scss";
-import { Header } from "../header/Header";
 
 export const DataDetail = () => {
   const data = useLocation();
+  // const userId = data.state.userId;
+  // const userName = data.state.userName;
   const menus = data.state.menus;
   const deleteId = menus.record_id;
   const day = menus.day;
 
   const nav = useNavigate();
+
+  const handleHome = () => {
+    nav("/dieter");
+  };
 
   const handleEdit = () => {
     nav(`/dieter/Edit/${day}`, {
@@ -29,7 +34,13 @@ export const DataDetail = () => {
 
   return (
     <div className="">
-      <Header title={"記録詳細ページ"} />
+      {console.log(menus)}
+      <header className="header">
+        <h1>記録詳細ページ</h1>
+        <button onClick={(e) => handleHome(e)} className="header__signOut">
+          ホームへ
+        </button>
+      </header>
 
       <main className="main">
         <h3>
@@ -39,9 +50,21 @@ export const DataDetail = () => {
         </h3>
 
         <h3>
-          筋トレセット名：
+          筋トレメニュー１：
           <br />
-          <div className="main__review">{menus.set_name}</div>
+          <div className="main__review">{menus.kin_menu1}</div>
+        </h3>
+
+        <h3>
+          筋トレメニュー２：
+          <br />
+          <div className="main__review">{menus.kin_menu2}</div>
+        </h3>
+
+        <h3>
+          筋トレメニュー３：
+          <br />
+          <div className="main__review">{menus.kin_menu3}</div>
         </h3>
 
         <h3>
