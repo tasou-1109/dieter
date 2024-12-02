@@ -14,7 +14,7 @@ import FoodManagement from "./pages/FoodManagement/FoodManagement";
 import Settings from "./pages/Settings/Settings";
 import "./App.css";
 
-function App() {
+export function App() {
   const [currentPage, setCurrentPage] = useState("home");
   const [isDarkMode, setIsDarkMode] = useState(false);
   const location = useLocation();
@@ -93,5 +93,3 @@ function App() {
     </div>
   );
 }
-
-export default App;
