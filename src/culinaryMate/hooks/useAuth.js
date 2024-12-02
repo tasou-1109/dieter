@@ -1,77 +1,52 @@
-// useAuth.js
-import { useState, useEffect } from "react";
-import { supabase } from "../../supabase"; // パスを修正
+import { useState, useEffect } from 'react';
 
-export const useAuth = () => {
-  const [foodList, setFoodList] = useState([]);
-  const [sortConfig, setSortConfig] = useState({
-    key: null,
-    direction: "ascending",
-  });
+const useAuth = () => {
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
+  // ユーザーの認証状態を確認
   useEffect(() => {
-    fetchFoodList();
+    const storedUser = localStorage.getItem('culinaryMate_user');
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
+    }
+    setLoading(false);
   }, []);
 
-  const fetchFoodList = async () => {
-    const {
-      data: { user },
-      error: userError,
-    } = await supabase.auth.getUser();
-    if (userError) {
-      alert("ユーザー情報の取得に失敗しました: " + userError.message);
-      return;
-    }
-
-    if (!user) {
-      alert("ユーザーがログインしていません");
-      return;
-    }
-
+  // ログイン処理
+  const login = async (credentials) => {
+    setLoading(true);
     try {
-      const { data, error } = await supabase
-        .from("foods")
-        .select("*")
-        .eq("user_id", user.id);
+      // ここで実際の認証APIを呼び出す
+      const mockUser = {
+        id: Date.now(),
+        name: credentials.username,
+        email: credentials.email
+      };
 
-      if (error) throw error;
-      setFoodList(data.map((item, index) => ({ ...item, order: index + 1 })));
-    } catch (error) {
-      alert("データの取得に失敗しました: " + error.message);
+      localStorage.setItem('culinaryMate_user', JSON.stringify(mockUser));
+      setUser(mockUser);
+      setLoading(false);
+    } catch (err) {
+      setError('ログインに失敗しました');
+      setLoading(false);
     }
   };
 
-  const handleLogout = async () => {
-    try {
-      const { error } = await supabase.auth.signOut();
-      if (error) throw error;
-      alert("ログアウトしました");
-    } catch (error) {
-      alert("ログアウトに失敗しました: " + error.message);
-    }
-  };
-
-  const requestSort = (key) => {
-    let direction = "ascending";
-    if (sortConfig.key === key && sortConfig.direction === "ascending") {
-      direction = "descending";
-    }
-    setSortConfig({ key, direction });
-
-    const sortedList = [...foodList].sort((a, b) => {
-      if (a[key] < b[key]) return direction === "ascending" ? -1 : 1;
-      if (a[key] > b[key]) return direction === "ascending" ? 1 : -1;
-      return 0;
-    });
-
-    setFoodList(sortedList);
+  // ログアウト処理
+  const logout = () => {
+    localStorage.removeItem('culinaryMate_user');
+    setUser(null);
   };
 
   return {
-    foodList,
-    sortConfig,
-    fetchFoodList,
-    handleLogout,
-    requestSort,
+    user,
+    loading,
+    error,
+    login,
+    logout
   };
 };
+
+export default useAuth;

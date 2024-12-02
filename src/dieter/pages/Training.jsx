@@ -18,7 +18,7 @@ export const Training = (info) => {
       const { data, error } = await supabase
         .from("record")
         .select("*")
-        .eq("user_Name", userName)
+        .eq("user_name", userName)
         .order("day", { ascending: false })
         .limit(14);
 

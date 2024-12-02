@@ -36,7 +36,7 @@ export const Header = () => {
   };
 
   const handleCulinaryMate = () => {
-    nav("/dieter/culinaryMate");
+    nav("/culinaryMate");
   };
 
   return (

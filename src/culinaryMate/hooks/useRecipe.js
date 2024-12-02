@@ -1,49 +1,62 @@
-// useRecipe.js
-import { useState } from "react";
-import axios from "axios";
+// src/culinaryMate/hooks/useRecipe.js
+import { useState } from 'react';
 
-export const useRecipe = () => {
-  const [response, setResponse] = useState("");
+const OPENAI_API_KEY = process.env.REACT_APP_OPENAI_API_KEY;
+const API_URL = 'https://api.openai.com/v1/chat/completions';
+
+const useRecipe = () => {
+  const [loading, setLoading] = useState(false);
+  const [recipe, setRecipe] = useState(null);
   const [error, setError] = useState(null);
 
-  const handleSendMessage = async (message) => {
-    const apiKey = process.env.REACT_APP_OPENAI_API_KEY;
-    const model = process.env.REACT_APP_OPENAI_MODEL;
-    const apiUrl = process.env.REACT_APP_OPENAI_API_URL;
-
-    const requestBody = {
-      model: model,
-      messages: [
-        {
-          role: "system",
-          content:
-            "あなたは親切で知識豊富なアシスタントです。解答は、献立に関する提案をお願いします。",
-        },
-        {
-          role: "user",
-          content: message,
-        },
-      ],
-      max_tokens: 150,
-      temperature: 0.7,
-    };
-
+  const generateRecipe = async (prompt) => {
+    setLoading(true);
+    setError(null);
+    
     try {
-      const response = await axios.post(apiUrl, requestBody, {
+      const response = await fetch(API_URL, {
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${apiKey}`,
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${OPENAI_API_KEY}`,
         },
+        body: JSON.stringify({
+          model: 'gpt-3.5-turbo',
+          messages: [
+            {
+              role: 'system',
+              content: 'あなたは料理のプロフェッショナルです。与えられた食材を使用した具体的なレシピを提案してください。'
+            },
+            {
+              role: 'user',
+              content: prompt
+            }
+          ],
+          temperature: 0.7,
+          max_tokens: 1000,
+        }),
       });
 
-      const content = response.data.choices[0].message.content;
-      setResponse(content);
-      setError(null);
-    } catch (error) {
-      console.error("APIリクエストが失敗しました:", error);
-      setError("APIリクエストが失敗しました。もう一度お試しください。");
+      if (!response.ok) {
+        throw new Error('APIリクエストに失敗しました');
+      }
+
+      const data = await response.json();
+      setRecipe(data.choices[0].message.content);
+    } catch (err) {
+      setError(err.message);
+      console.error('Error generating recipe:', err);
+    } finally {
+      setLoading(false);
     }
   };
 
-  return { response, error, handleSendMessage };
+  return {
+    loading,
+    recipe,
+    error,
+    generateRecipe
+  };
 };
+
+export default useRecipe;
