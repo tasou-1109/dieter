@@ -1,8 +1,8 @@
 // src/culinaryMate/pages/Home/Home.js
-import React from 'react';
-import { motion } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
-import './Home.css';
+import React from "react";
+import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
+import "./Home.css";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -15,7 +15,7 @@ const Home = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          フィットネス管理アプリ
+          マッスルバランス
         </motion.h1>
         <motion.p
           initial={{ opacity: 0 }}
@@ -30,8 +30,8 @@ const Home = () => {
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
-            onClick={() => navigate('/dieter')}
-            style={{ cursor: 'pointer' }}
+            onClick={() => navigate("/dieter")}
+            style={{ cursor: "pointer" }}
           >
             <h3>トレーニング記録</h3>
             <p>日々のワークアウトを簡単に記録</p>
@@ -41,8 +41,10 @@ const Home = () => {
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.6 }}
-            onClick={() => navigate('/culinaryMate', { state: { page: 'food' } })}
-            style={{ cursor: 'pointer' }}
+            onClick={() =>
+              navigate("/culinaryMate", { state: { page: "food" } })
+            }
+            style={{ cursor: "pointer" }}
           >
             <h3>食事管理</h3>
             <p>栄養バランスを可視化</p>

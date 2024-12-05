@@ -46,7 +46,6 @@ export const Router = () => {
               path="/dieter/TrainingEdit/:workOut_id"
               element={<TrainingEdit />}
             />
-
             <Route path="/culinaryMate" element={<App />} />
           </>
         ) : (

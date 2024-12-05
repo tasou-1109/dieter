@@ -1,7 +1,7 @@
 //import "./header.scss";
 import React, { useEffect, useState } from "react";
 import { supabase } from "../../supabase";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export const HomeHeader = () => {
   const nav = useNavigate();
@@ -58,7 +58,6 @@ export const HomeHeader = () => {
     <>
       <header className="header">
         <h1 className="header__title">ダイエッター</h1>
-        &emsp;
         {auth ? (
           <>
             <button

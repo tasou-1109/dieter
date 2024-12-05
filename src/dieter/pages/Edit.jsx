@@ -27,8 +27,6 @@ export const Edit = () => {
     getWorkOutSet();
   }, []);
 
-
-
   const handleSetEdit = (e) => {
     set_name = e.target.value;
     console.log(set_name);
@@ -69,27 +67,27 @@ export const Edit = () => {
       <Header title={"記録編集ページ"} />
       <div className="main">
         <h1 className="title">編集</h1>
-        <label className="workOut__label">トレーニング内容</label>
-        <br />
+        <h4 className="workOut__label">トレーニング内容</h4>
         <label className="workOut__label">セット名を選択してください</label>
-        <select onChange={(e) => handleSetEdit(e)}>
-          <option value={""}>{set_name}</option>
+        <br />
+        <select onChange={(e) => handleSetEdit(e)} className="workOut__choice">
+          <option value={""} className="workOut__default-option">
+            {set_name}
+          </option>
           {workOut.map((workOut, key) => (
-            <option key={key}>{workOut.name}</option>
+            <option key={key} className="workOut__choice-option">
+              {workOut.name}
+            </option>
           ))}
         </select>
         <br />
-        <br />
-        <label className="meal__title">食事内容</label>
-        <br />
+        <h4 className="meal__title">食事内容</h4>
         <textarea
           onChange={(e) => handleMealEdit(e)}
           defaultValue={meal}
           className="meal__set"
         ></textarea>
-        <br />
-        <label className="body__weight">現在体重</label>
-        <br />
+        <h4 className="body__weight">現在体重</h4>
         <input
           type="number"
           onChange={(e) => handleWeightEdit(e)}

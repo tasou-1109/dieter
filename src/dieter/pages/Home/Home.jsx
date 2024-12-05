@@ -5,6 +5,8 @@ import { HomeHeader } from "../../header/HomeHeader";
 import { supabase } from "../../../supabase";
 import { useNavigate } from "react-router-dom";
 import { Select_work_out } from "../../api_Connect/Select_work_out";
+import Bubbles from "../../../culinaryMate/components/Animations/Bubbles";
+import Wave from "../../../culinaryMate/components/Animations/WaveAnimation";
 
 export const Home = () => {
   const nav = useNavigate();
@@ -81,6 +83,8 @@ export const Home = () => {
             <TrainingMenus workOut={workOut} />
           </div>
         )} */}
+        <Bubbles />
+        <Wave />
       </main>
     </div>
   );

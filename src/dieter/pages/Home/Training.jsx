@@ -37,7 +37,7 @@ export const Training = (info) => {
       <ul className="training__ul" role="tablist">
         {menus.map((menu, key) => {
           return (
-            <>
+            <label>
               <li id="list" key={key} className="training__list">
                 {menu.day}&nbsp;&nbsp;
                 {menu.weight}kg&nbsp;&nbsp;
@@ -49,7 +49,7 @@ export const Training = (info) => {
               >
                 詳細へ
               </button>
-            </>
+            </label>
           );
         })}
       </ul>

@@ -1,80 +1,8 @@
-// .title {
-//   font-size: 2rem;
-//   color: #333;
-//   margin-bottom: 1rem;
-// }
-
-// .training__label,
-// .meal__title,
-// .body__weight {
-//   font-weight: bold;
-//   color: #555;
-// }
-
-// .training__choice,
-// .meal__set,
-// .body__weight-edit {
-//   width: 98%;
-//   padding: 0.5rem;
-//   margin-top: 0.5rem;
-//   margin-bottom: 1rem;
-//   border: 1px solid #ccc;
-//   border-radius: 5px;
-//   font-size: 1rem;
-// }
-
-// .training__choice {
-//   display: block;
-//   margin-bottom: 0.5rem;
-// }
-
-// input[type="number"] {
-//   width: 10%;
-// }
-
-// .Set__button {
-//   background: #3498db;
-//   color: #fff;
-//   border: none;
-//   padding: 0.75rem 1.5rem;
-//   border-radius: 5px;
-//   cursor: pointer;
-// }
-
-// .Set__button:hover {
-//   background: #2980b9;
-// }
-
-// ChatGPT作
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px;
-  background-color: #007bff;
-  color: #fff;
-}
-
-.header h1 {
-  font-size: 20px;
-}
-
-.header__signOut {
-  padding: 8px 16px;
-  background-color: #fff;
-  color: #007bff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 14px;
-  transition: background-color 0.3s ease;
-}
-
-.header__signOut:hover {
-  background-color: #e0e0e0;
-}
+$font_color: white;
+$background-color: rgba(255, 255, 255, 0.25); // 背景色
 
 .main {
+  color: $font_color;
   padding: 20px;
 }
 
@@ -94,6 +22,8 @@
 .training__choice,
 .meal__set,
 .body__weight-edit {
+  color: $font_color;
+  background-color: $background-color;
   width: 100%;
   padding: 10px;
   margin-bottom: 15px;
