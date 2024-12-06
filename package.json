@@ -17,7 +17,6 @@
     "axios": "^1.7.7",
     "framer-motion": "^11.11.17",
     "next": "^14.2.7",
-    "prettier": "^3.3.3",
     "react": "^18.2.0",
     "react-bootstrap": "^2.10.4",
     "react-dom": "^18.2.0",
@@ -29,16 +28,11 @@
     "sass": "^1.71.1",
     "web-vitals": "^2.1.4"
   },
-  "homepage": "https://tasou-1109.github.io/culinaryMate",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "rm": "rm -rf docs",
-    "mv": "mv build docs",
-    "git": "git add . && git commit && git push origin master",
-    "deploy": "npm run rm && npm run build && npm run mv && npm run git"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [

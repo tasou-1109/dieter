@@ -35,6 +35,7 @@ export const Router = () => {
         <Route path="/dieter/SignUp" element={<SignUp />} />
         {auth ? (
           <>
+            <Route path="/culinaryMate" element={<App />} />
             <Route path="/dieter" element={<Home />} />
             <Route path="/dieter/Set/:date" element={<Set />} />
             <Route path="/dieter/Detail/:date" element={<DataDetail />} />
@@ -46,7 +47,6 @@ export const Router = () => {
               path="/dieter/TrainingEdit/:workOut_id"
               element={<TrainingEdit />}
             />
-            <Route path="/culinaryMate" element={<App />} />
           </>
         ) : (
           <>
