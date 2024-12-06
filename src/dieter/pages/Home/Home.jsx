@@ -62,27 +62,6 @@ export const Home = () => {
             筋トレメニュー一覧へ
           </button>
         </div>
-        {/* {display ? (
-          <div className="main__mem">
-            <button
-              onClick={() => handleMenuMove(false)}
-              className="training__button"
-            >
-              メニュー切り替え
-            </button>
-            <Training user_id={user} auth={auth} user_name={user_name} />
-          </div>
-        ) : (
-          <div>
-            <button
-              onClick={() => handleMenuMove(true)}
-              className="training__button"
-            >
-              メニュー切り替え
-            </button>
-            <TrainingMenus workOut={workOut} />
-          </div>
-        )} */}
         <Bubbles />
         <Wave />
       </main>

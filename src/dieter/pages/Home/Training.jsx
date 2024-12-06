@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { supabase } from "../../../supabase";
 import { useNavigate } from "react-router-dom";
 import { Select_record } from "../../api_Connect/Select_record";
 
 export const Training = (info) => {
   const user_id = info["user_id"];
-  const auth = info["auth"];
   const user_name = info["user_name"];
   console.log(user_name);
 

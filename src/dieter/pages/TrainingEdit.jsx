@@ -36,7 +36,7 @@ export const TrainingEdit = () => {
 
   const handleWorkOutEdit = async () => {
     try {
-      const { data, error } = await supabase
+      const { data } = await supabase
         .from("workout_menu")
         .update([
           {
