@@ -37,7 +37,7 @@ export const Login = () => {
   var password;
 
   //エラー
-  const [logError, setLogError] = useState();
+  const [logError] = useState();
 
   const handleMailChange = (e) => {
     mail = e.target.value;
