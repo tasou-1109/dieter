@@ -4,6 +4,8 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { Header } from "../header/Header";
 import { supabase } from "../../supabase";
 import { Select_work_out } from "../api_Connect/Select_work_out";
+import Bubbles from "../../culinaryMate/components/Animations/Bubbles";
+import WaveAnimation from "../../culinaryMate/components/Animations/WaveAnimation";
 
 export const Set = () => {
   //ページ移動機能
@@ -68,6 +70,7 @@ export const Set = () => {
   return (
     <div>
       <Header title={"記録ページ"} />
+
       <div className="main">
         <h1 className="title">記録</h1>
         <label className="training__label">トレーニング内容</label>
@@ -101,6 +104,8 @@ export const Set = () => {
           記録
         </button>
       </div>
+      <Bubbles />
+      <WaveAnimation />
     </div>
   );
 };

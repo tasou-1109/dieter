@@ -4,6 +4,8 @@ import "../scss/edit.scss";
 import { useState, useEffect } from "react";
 import { Select_work_out } from "../api_Connect/Select_work_out";
 import { Header } from "../header/Header";
+import Bubbles from "../../culinaryMate/components/Animations/Bubbles";
+import WaveAnimation from "../../culinaryMate/components/Animations/WaveAnimation";
 
 export const Edit = () => {
   const nav = useNavigate();
@@ -66,7 +68,7 @@ export const Edit = () => {
     <div>
       <Header title={"記録編集ページ"} />
       <div className="main">
-        <h1 className="title">編集</h1>
+        <h1 className="title">記録編集</h1>
         <h4 className="workOut__label">トレーニング内容</h4>
         <label className="workOut__label">セット名を選択してください</label>
         <br />
@@ -100,6 +102,8 @@ export const Edit = () => {
           記録
         </button>
       </div>
+      <Bubbles />
+      <WaveAnimation />
     </div>
   );
 };

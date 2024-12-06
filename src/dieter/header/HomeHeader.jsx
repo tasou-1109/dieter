@@ -77,7 +77,7 @@ export const HomeHeader = () => {
               className="header__signOut"
             >
               {" "}
-              筋トレ管理へ
+              筋トレメニュー登録へ
             </button>
           </>
         ) : (

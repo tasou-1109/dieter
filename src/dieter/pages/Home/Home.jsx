@@ -59,7 +59,7 @@ export const Home = () => {
           <Training user_id={user} auth={auth} user_name={user_name} />
           <br />
           <button onClick={() => handleSetRoute()} className="training__button">
-            筋トレセット一覧へ
+            筋トレメニュー一覧へ
           </button>
         </div>
         {/* {display ? (

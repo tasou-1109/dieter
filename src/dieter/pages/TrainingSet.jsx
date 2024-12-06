@@ -1,6 +1,8 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { supabase } from "../../supabase";
 import { Header } from "../header/Header";
+import Bubbles from "../../culinaryMate/components/Animations/Bubbles";
+import WaveAnimation from "../../culinaryMate/components/Animations/WaveAnimation";
 
 export const TrainingSet = () => {
   const nav = useNavigate();
@@ -58,7 +60,7 @@ export const TrainingSet = () => {
       <Header title={"筋トレセットページ"} />
 
       <div className="main">
-        <h1 className="title">メニュー</h1>
+        <h1 className="title">筋トレメニュー登録</h1>
         <label className="training__label"></label>
         <br />
         セット名
@@ -68,28 +70,28 @@ export const TrainingSet = () => {
           className="training__choice"
         />
         <br />
-        1:
+        メニュー1:
         <input
           type="text"
           onChange={(e) => handleTrainingSet_1(e)}
           className="training__choice"
         />
         <br />
-        2:
+        メニュー2:
         <input
           type="text"
           onChange={(e) => handleTrainingSet_2(e)}
           className="training__choice"
         />
         <br />
-        3:
+        メニュー3:
         <input
           type="text"
           onChange={(e) => handleTrainingSet_3(e)}
           className="training__choice"
         />
         <br />
-        4:
+        メニュー4:
         <input
           type="text"
           onChange={(e) => handleTrainingSet_4(e)}
@@ -100,6 +102,8 @@ export const TrainingSet = () => {
           記録
         </button>
       </div>
+      <Bubbles />
+      <WaveAnimation />
     </div>
   );
 };

@@ -1,6 +1,8 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { supabase } from "../../supabase";
 import { Header } from "../header/Header";
+import Bubbles from "../../culinaryMate/components/Animations/Bubbles";
+import WaveAnimation from "../../culinaryMate/components/Animations/WaveAnimation";
 
 export const TrainingEdit = () => {
   const data = useLocation();
@@ -106,6 +108,8 @@ export const TrainingEdit = () => {
           記録
         </button>
       </div>
+      <Bubbles />
+      <WaveAnimation />
     </div>
   );
 };

@@ -1,6 +1,8 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { supabase } from "../../supabase";
 import { Header } from "../header/Header";
+import Bubbles from "../../culinaryMate/components/Animations/Bubbles";
+import WaveAnimation from "../../culinaryMate/components/Animations/WaveAnimation";
 
 export const TrainingMenus = () => {
   const nav = useNavigate();
@@ -63,6 +65,8 @@ export const TrainingMenus = () => {
           })}
         </ul>
       </main>
+      <Bubbles />
+      <WaveAnimation />
     </div>
   );
 };

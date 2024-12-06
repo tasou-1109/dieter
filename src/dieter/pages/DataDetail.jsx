@@ -3,6 +3,8 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { supabase } from "../../supabase";
 import "../scss/detaDetail.scss";
 import { Header } from "../header/Header";
+import Bubbles from "../../culinaryMate/components/Animations/Bubbles";
+import WaveAnimation from "../../culinaryMate/components/Animations/WaveAnimation";
 
 export const DataDetail = () => {
   const data = useLocation();
@@ -61,6 +63,8 @@ export const DataDetail = () => {
         <button onClick={() => handleEdit()}>編集へ</button>
         <button onClick={() => handleDataDelete()}>削除</button>
       </footer>
+      <Bubbles />
+      <WaveAnimation />
     </div>
   );
 };
