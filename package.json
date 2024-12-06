@@ -28,16 +28,16 @@
     "sass": "^1.71.1",
     "web-vitals": "^2.1.4"
   },
-  "homepage": "https://tasou-1109.github.io/culinaryMate",
+  "homepage": "/",
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "GENERATE_SOURCEMAP=false react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "rm": "rm -rf docs",
     "mv": "mv build docs",
     "git": "git add . && git commit && git push origin master",
-    "deploy": "npm run rm && npm run build && npm run mv && npm run git"
+    "deploy": "npm run build && cp build/index.html build/404.html"
   },
   "eslintConfig": {
     "extends": [

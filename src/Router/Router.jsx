@@ -29,7 +29,7 @@ export const Router = () => {
   }, []);
 
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/">
       <Routes>
         <Route path="/dieter/Login" element={<Login />} />
         <Route path="/dieter/SignUp" element={<SignUp />} />
