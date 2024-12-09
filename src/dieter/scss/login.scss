@@ -1,0 +1,142 @@
+// login.scss
+
+// body {
+//   font-family: "Arial", sans-serif;
+//   background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   height: 100vh;
+//   margin: 0;
+// }
+
+// .login {
+//   background: #ffffff;
+//   padding: 2rem;
+//   border-radius: 10px;
+//   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+//   width: 400px;
+//   text-align: center;
+// }
+
+// h2 {
+//   color: #333;
+//   margin-bottom: 1rem;
+//   font-size: 2rem;
+// }
+
+// #error {
+//   color: #e74c3c;
+//   font-size: 0.9rem;
+//   margin-bottom: 1rem;
+// }
+
+// .login-Form {
+//   display: flex;
+//   flex-direction: column;
+//   align-items: flex-start;
+// }
+
+// label {
+//   font-size: 1rem;
+//   color: #333;
+//   margin-bottom: 0.5rem;
+// }
+
+// input[type="text"],
+// input[type="password"] {
+//   width: 100%;
+//   padding: 0.5rem;
+//   margin-bottom: 0.5rem;
+//   border: 1px solid #ddd;
+//   border-radius: 5px;
+//   font-size: 1rem;
+// }
+
+// #login-Form__errorM,
+// #login-Form__errorP {
+//   color: #e74c3c;
+//   font-size: 0.8rem;
+//   margin-bottom: 0.5rem;
+// }
+
+// input[type="submit"] {
+//   background: #3498db;
+//   color: #fff;
+//   padding: 0.7rem;
+//   border: none;
+//   border-radius: 5px;
+//   cursor: pointer;
+//   width: 100%;
+//   font-size: 1rem;
+// }
+
+// input[type="submit"]:hover {
+//   background: #2980b9;
+// }
+
+// a {
+//   display: inline-block;
+//   margin-top: 1rem;
+//   font-size: 0.9rem;
+//   color: #3498db;
+//   text-decoration: none;
+// }
+
+// a:hover {
+//   color: #2980b9;
+// }
+
+//ChatGPT作デジコン用
+.login-Form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 400px;
+  margin: auto;
+}
+
+.login-Form__email-Set,
+.login-Form__password-Set {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+#login-Form__login-Button {
+  width: 100%;
+  padding: 12px;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#login-Form__login-Button:hover {
+  background-color: #0056b3;
+}
+
+#login-Form__errorM,
+#login-Form__errorP {
+  color: #ff0000;
+  font-size: 12px;
+  margin-top: -10px;
+  margin-bottom: 10px;
+}
+
+a {
+  color: #007bff;
+  text-decoration: none;
+  margin-top: 15px;
+}
+
+a:hover {
+  text-decoration: underline;
+}

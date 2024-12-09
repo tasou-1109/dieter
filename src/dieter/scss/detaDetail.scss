@@ -1,0 +1,37 @@
+$background-color: rgba(255, 255, 255, 0.25); // 背景色
+
+.main {
+  padding: 20px;
+}
+
+.main__day,
+.main__review,
+.main__detail,
+.main__review-url {
+  padding: 10px;
+  background-color: $background-color;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  font-size: 16px;
+}
+
+footer {
+  display: flex;
+  justify-content: space-around;
+  padding: auto;
+}
+
+footer button {
+  padding: 10px 20px;
+  background-color: hsl(122, 39%, 49%);
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 20px;
+  transition: background-color 0.3s ease;
+}
+
+footer button:hover {
+  background-color: hsl(122, 39%, 49%);
+}

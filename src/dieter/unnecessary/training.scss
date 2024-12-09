@@ -1,0 +1,64 @@
+// training.scss
+
+// body {
+//   font-family: "Arial", sans-serif;
+//   background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   height: 100vh;
+//   margin: 0;
+// }
+
+.training__title {
+  background-color: #3498db;
+  color: #fff;
+  padding: 1rem;
+  text-align: center;
+  border-radius: 10px 10px 0 0;
+  width: 100%;
+  max-width: 550px;
+  margin: 0 auto;
+  font-size: 2rem;
+}
+
+.training__ul {
+  background: #ffffff;
+  padding: 2rem;
+  border-radius: 0 0 10px 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 550px;
+  margin: 0 auto;
+  list-style: none;
+  padding-left: 0;
+}
+
+.training__list {
+  border-bottom: 1px solid #ddd;
+  padding: 1rem;
+  font-size: 1rem;
+  color: #333;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.training__list:last-child {
+  border-bottom: none;
+}
+
+.training__button {
+  background: #3498db;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-left: 1rem;
+}
+
+.training__button:hover {
+  background: #2980b9;
+}
