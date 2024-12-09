@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import { Home } from "../dieter/pages/Home/Home.jsx";
 import { Set } from "../dieter/pages/Set.jsx";
 import { Login } from "../dieter/auth/Login.jsx";
@@ -29,8 +29,9 @@ export const Router = () => {
   }, []);
 
   return (
-    <BrowserRouter basename="/">
+    <BrowserRouter>
       <Routes>
+        <Route path="/" element={<Navigate to="/culinaryMate" replace />} />
         <Route path="/dieter/Login" element={<Login />} />
         <Route path="/dieter/SignUp" element={<SignUp />} />
         {auth ? (
