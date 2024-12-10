@@ -28,7 +28,7 @@
     "sass": "^1.71.1",
     "web-vitals": "^2.1.4"
   },
-  "homepage": "https://tasou-1109.github.io/culinaryMate/",
+  "homepage": "https://tasou-1109.github.io/dieter",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
