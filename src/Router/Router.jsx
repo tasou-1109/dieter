@@ -29,7 +29,7 @@ export const Router = () => {
   }, []);
 
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/dieter">
       <Routes>
         <Route path="/" element={<Navigate to="/culinaryMate" replace />} />
         <Route path="/dieter/Login" element={<Login />} />
