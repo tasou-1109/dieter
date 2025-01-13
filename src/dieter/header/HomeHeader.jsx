@@ -19,7 +19,6 @@ export const HomeHeader = () => {
         const a = await supabase.auth.getUser();
         setUserId(a.data.user.id);
         setUser_name(a.data.user.user_metadata.Name);
-        console.log(a.data.user.user_metadata.Name);
       } else {
         console.log(data);
       }
@@ -34,14 +33,14 @@ export const HomeHeader = () => {
     try {
       const { error } = await supabase.auth.signOut();
       if (error) throw error;
-      nav("/dieter/Login");
+      nav("/Login");
     } catch (error) {
       alert(error.message);
     }
   };
 
   const handleLogin = () => {
-    nav("/dieter/Login");
+    nav("/Login");
   };
 
   const handleCulinaryMate = () => {
@@ -49,7 +48,7 @@ export const HomeHeader = () => {
   };
 
   const handleTrainingRoute = () => {
-    nav("/dieter/TrainingSet", {
+    nav("/TrainingSet", {
       state: { user_id: userId, user_name: user_name },
     });
   };
@@ -67,13 +66,13 @@ export const HomeHeader = () => {
               サインアウト
             </button>
             <button
-              onClick={() => handleCulinaryMate()}
+              onClick={(e) => handleCulinaryMate()}
               className="header__signOut"
             >
               食材管理へ
             </button>
             <button
-              onClick={() => handleTrainingRoute()}
+              onClick={(e) => handleTrainingRoute()}
               className="header__signOut"
             >
               {" "}
@@ -85,7 +84,7 @@ export const HomeHeader = () => {
             <button onClick={(e) => handleLogin()} className="header__signOut">
               ログイン
             </button>
-            <button onClick={() => handleCulinaryMate()}>食材管理へ</button>
+            {/* <button onClick={() => handleCulinaryMate()}>食材管理へ</button> */}
           </>
         )}
       </header>

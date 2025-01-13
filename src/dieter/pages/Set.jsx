@@ -22,7 +22,6 @@ export const Set = () => {
   //トレーニングメニューセットの取得
   const getWorkOutSet = async () => {
     setWorkOut(await Select_work_out(user_name));
-    console.log(workOut);
   };
 
   useEffect(() => {
@@ -61,7 +60,7 @@ export const Set = () => {
           set_name: set_name,
         },
       ]);
-      nav("/dieter");
+      nav("/");
     } catch (error) {
       alert(error.message);
     }

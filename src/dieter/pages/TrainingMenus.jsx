@@ -9,10 +9,9 @@ export const TrainingMenus = () => {
 
   const data = useLocation();
   const workOut = data.state.workOut;
-  console.log(workOut);
 
   const moveTrainingEdit = (workOut_id, workOut_edit) => {
-    nav(`/dieter/TrainingEdit/${workOut_id}`, {
+    nav(`/TrainingEdit/${workOut_id}`, {
       state: { workOut: workOut_edit },
     });
   };
@@ -20,7 +19,7 @@ export const TrainingMenus = () => {
   const moveTrainingDelete = async (delete_id) => {
     try {
       await supabase.from("workout_menu").delete().eq("workout_id", delete_id);
-      nav("/dieter");
+      nav("/");
     } catch (error) {
       alert(error.message);
     }

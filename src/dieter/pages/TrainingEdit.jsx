@@ -7,7 +7,6 @@ import WaveAnimation from "../../culinaryMate/components/Animations/WaveAnimatio
 export const TrainingEdit = () => {
   const data = useLocation();
   const workOut = data.state.workOut;
-  console.log(workOut);
   const update_id = workOut.workout_id;
   var set_name = workOut.name;
   var menu1 = workOut.menu1;
@@ -49,9 +48,7 @@ export const TrainingEdit = () => {
         ])
         .eq("workout_id", update_id)
         .select();
-
-      console.log(data);
-      nav("/dieter");
+      nav("/");
     } catch (error) {
       alert(error.message);
     }

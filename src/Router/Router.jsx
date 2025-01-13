@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import { Home } from "../dieter/pages/Home/Home.jsx";
 import { Set } from "../dieter/pages/Set.jsx";
 import { Login } from "../dieter/auth/Login.jsx";
@@ -31,27 +31,28 @@ export const Router = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/dieter/Login" element={<Login />} />
-        <Route path="/dieter/SignUp" element={<SignUp />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/Login" element={<Login />} />
+        <Route path="/SignUp" element={<SignUp />} />
         {auth ? (
           <>
-            <Route path="/dieter" element={<Home />} />
-            <Route path="/dieter/Set/:date" element={<Set />} />
-            <Route path="/dieter/Detail/:date" element={<DataDetail />} />
-            <Route path="/dieter/Edit/:day" element={<Edit />} />
-            <Route path="/dieter/TrainingMenus" element={<TrainingMenus />} />
-            <Route path="/dieter/TrainingSet" element={<TrainingSet />} />
+            <Route path="/" element={<Home />} />
+            <Route path="/Set/:date" element={<Set />} />
+            <Route path="/Detail/:date" element={<DataDetail />} />
+            <Route path="/Edit/:day" element={<Edit />} />
+            <Route path="/TrainingMenus" element={<TrainingMenus />} />
+            <Route path="/TrainingSet" element={<TrainingSet />} />
 
             <Route
-              path="/dieter/TrainingEdit/:workOut_id"
+              path="/TrainingEdit/:workOut_id"
               element={<TrainingEdit />}
             />
             <Route path="/culinaryMate" element={<App />} />
           </>
         ) : (
           <>
-            <Route path="/dieter/Login" element={<Login />} />
-            <Route path="/dieter/SignUp" element={<SignUp />} />
+            <Route path="/Login" element={<Login />} />
+            <Route path="/SignUp" element={<SignUp />} />
           </>
         )}
       </Routes>

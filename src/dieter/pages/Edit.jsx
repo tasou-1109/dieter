@@ -17,7 +17,6 @@ export const Edit = () => {
   var meal = menus.meal;
   var weight = menus.weight;
   var user_name = menus.user_name;
-  console.log(user_name);
 
   const [workOut, setWorkOut] = useState([]);
 
@@ -31,16 +30,13 @@ export const Edit = () => {
 
   const handleSetEdit = (e) => {
     set_name = e.target.value;
-    console.log(set_name);
   };
 
   const handleMealEdit = (e) => {
     meal = e.target.value;
-    console.log(meal);
   };
   const handleWeightEdit = (e) => {
     weight = e.target.value;
-    console.log(weight);
   };
 
   const handleDataEdit = async () => {
@@ -57,8 +53,7 @@ export const Edit = () => {
         ])
         .eq("record_id", menus.record_id)
         .select();
-      console.log(data);
-      nav("/dieter");
+      nav("/");
     } catch (error) {
       alert(error.message);
     }

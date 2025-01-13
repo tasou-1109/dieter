@@ -37,12 +37,10 @@ export const Home = () => {
   }, []);
 
   const handleSetRoute = () => {
-    nav("/dieter/TrainingMenus", {
+    nav("/TrainingMenus", {
       state: { workOut: workOut },
     });
   };
-
-  console.log(workOut);
 
   return (
     <div>

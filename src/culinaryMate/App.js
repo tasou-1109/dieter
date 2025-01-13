@@ -73,7 +73,8 @@ export function App() {
   return (
     <div className={`App ${isDarkMode ? "dark-mode" : ""}`}>
       <BackgroundSlideshow />
-      <div className={`gradient-overlay ${isDarkMode ? "dark" : "light"}`} />
+      <div className={`gradient-overlay
+         ${isDarkMode ? "dark" : "light"}`} />
       <Bubbles />
       <Navigation currentPage={currentPage} onNavigate={setCurrentPage} />
       <WaveAnimation />

@@ -42,3 +42,19 @@
   background: rgba(255, 255, 255, 0.3);
   font-weight: bold;
 }
+
+@media screen and (max-width: 450px) {
+  .navigation {
+    width: 100%;
+    gap: 0%;
+    padding-left: 5%;
+    white-space: nowrap;
+    justify-content: center;
+  }
+
+  .nav-link {
+    font-size: 1%;
+    padding: 3%;
+    margin: 1%;
+  }
+}

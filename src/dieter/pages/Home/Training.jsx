@@ -5,7 +5,6 @@ import { Select_record } from "../../api_Connect/Select_record";
 export const Training = (info) => {
   const user_id = info["user_id"];
   const user_name = info["user_name"];
-  console.log(user_name);
 
   const [menus, setMenus] = useState([]);
 
@@ -23,8 +22,7 @@ export const Training = (info) => {
   }, [user_id]);
 
   const handleDetail = (date, menu) => {
-    console.log(date, menu);
-    nav(`/dieter/Detail/${date}`, {
+    nav(`/Detail/${date}`, {
       state: { menus: menu, user_id: user_id, user_name: user_name },
     });
   };

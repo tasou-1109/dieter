@@ -30,7 +30,7 @@ const Home = () => {
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
-            onClick={() => navigate("/dieter")}
+            onClick={() => navigate("/")}
             style={{ cursor: "pointer" }}
           >
             <h3>トレーニング記録</h3>

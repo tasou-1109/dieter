@@ -1,11 +1,12 @@
 // src/culinaryMate/pages/FoodManagement/FoodForm.js
-import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import React, { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import "./FoodManagement.css";
 
 const FoodForm = ({ selectedFood, onSubmit, onCancel }) => {
-  const [foodName, setFoodName] = useState('');
-  const [quantity, setQuantity] = useState('');
-  const [expiryDate, setExpiryDate] = useState('');
+  const [foodName, setFoodName] = useState("");
+  const [quantity, setQuantity] = useState("");
+  const [expiryDate, setExpiryDate] = useState("");
 
   useEffect(() => {
     if (selectedFood) {
@@ -18,9 +19,9 @@ const FoodForm = ({ selectedFood, onSubmit, onCancel }) => {
   }, [selectedFood]);
 
   const resetForm = () => {
-    setFoodName('');
-    setQuantity('');
-    setExpiryDate('');
+    setFoodName("");
+    setQuantity("");
+    setExpiryDate("");
   };
 
   const handleSubmit = (e) => {
@@ -40,9 +41,10 @@ const FoodForm = ({ selectedFood, onSubmit, onCancel }) => {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
     >
-      <h2>{selectedFood ? '食材を編集' : '新しい食材を追加'}</h2>
+      <h2>{selectedFood ? "食材を編集" : "新しい食材を追加"}</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
+          {/* <div> */}
           <input
             type="text"
             placeholder="食材名"
@@ -69,7 +71,7 @@ const FoodForm = ({ selectedFood, onSubmit, onCancel }) => {
           />
         </div>
         <button type="submit" className="submit-button">
-          {selectedFood ? '更新' : '追加'}
+          {selectedFood ? "更新" : "追加"}
         </button>
         {selectedFood && (
           <button type="button" className="cancel-button" onClick={onCancel}>

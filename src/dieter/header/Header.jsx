@@ -4,7 +4,7 @@ export const Header = (title) => {
   const nav = useNavigate();
 
   const handleHome = () => {
-    nav("/dieter");
+    nav("/");
   };
 
   return (

@@ -41,11 +41,9 @@ export const Login = () => {
 
   const handleMailChange = (e) => {
     mail = e.target.value;
-    console.log(mail);
   };
   const handlePasswordChange = (e) => {
     password = e.target.value;
-    console.log(password);
   };
 
   const onLogIn = async () => {
@@ -56,13 +54,13 @@ export const Login = () => {
       });
       reset();
       if (error) throw error;
-      nav("/dieter");
+      nav("/");
     } catch (error) {
       alert(error.message);
     }
   };
 
-  if (auth) return <Navigate to="/dieter" />;
+  if (auth) return <Navigate to="/" />;
 
   return (
     <div>
@@ -123,7 +121,7 @@ export const Login = () => {
         </form>
 
         <br />
-        <Link to="/dieter/SignUp">新規作成</Link>
+        <Link to="/SignUp">新規作成</Link>
       </main>
     </div>
   );

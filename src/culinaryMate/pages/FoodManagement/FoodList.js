@@ -1,40 +1,41 @@
 // src/culinaryMate/pages/FoodManagement/FoodList.js
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useState } from "react";
+import "./FoodManagement.css";
+import { motion, AnimatePresence } from "framer-motion";
 
 const FoodList = ({ foods, onFoodSelect, onFoodDelete }) => {
-  const [sortBy, setSortBy] = useState('expiryDate');
-  const [sortOrder, setSortOrder] = useState('asc');
+  const [sortBy, setSortBy] = useState("expiryDate");
+  const [sortOrder, setSortOrder] = useState("asc");
 
   const getSortedFoods = () => {
     return [...foods].sort((a, b) => {
       let comparison = 0;
       switch (sortBy) {
-        case 'name':
+        case "name":
           comparison = a.name.localeCompare(b.name);
           break;
-        case 'expiryDate':
+        case "expiryDate":
           comparison = new Date(a.expiryDate) - new Date(b.expiryDate);
           break;
-        case 'quantity':
+        case "quantity":
           comparison = a.quantity - b.quantity;
           break;
-        case 'order':
+        case "order":
           comparison = a.id - b.id;
           break;
         default:
           comparison = 0;
       }
-      return sortOrder === 'asc' ? comparison : -comparison;
+      return sortOrder === "asc" ? comparison : -comparison;
     });
   };
 
   const handleSort = (key) => {
     if (sortBy === key) {
-      setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
+      setSortOrder(sortOrder === "asc" ? "desc" : "asc");
     } else {
       setSortBy(key);
-      setSortOrder('asc');
+      setSortOrder("asc");
     }
   };
 
@@ -46,17 +47,21 @@ const FoodList = ({ foods, onFoodSelect, onFoodDelete }) => {
       transition={{ duration: 0.5, delay: 0.2 }}
     >
       <div className="list-controls">
-        <button className="sort-button" onClick={() => handleSort('order')}>
-          登録順 {sortBy === 'order' && (sortOrder === 'asc' ? '↑' : '↓')}
+        <button className="sort-button" onClick={() => handleSort("order")}>
+          登録順 {sortBy === "order" && (sortOrder === "asc" ? "↑" : "↓")}
         </button>
-        <button className="sort-button" onClick={() => handleSort('name')}>
-          食材名 {sortBy === 'name' && (sortOrder === 'asc' ? '↑' : '↓')}
+        <button className="sort-button" onClick={() => handleSort("name")}>
+          食材名 {sortBy === "name" && (sortOrder === "asc" ? "↑" : "↓")}
         </button>
-        <button className="sort-button" onClick={() => handleSort('expiryDate')}>
-          賞味期限 {sortBy === 'expiryDate' && (sortOrder === 'asc' ? '↑' : '↓')}
+        <button
+          className="sort-button"
+          onClick={() => handleSort("expiryDate")}
+        >
+          賞味期限{" "}
+          {sortBy === "expiryDate" && (sortOrder === "asc" ? "↑" : "↓")}
         </button>
-        <button className="sort-button" onClick={() => handleSort('quantity')}>
-          数量 {sortBy === 'quantity' && (sortOrder === 'asc' ? '↑' : '↓')}
+        <button className="sort-button" onClick={() => handleSort("quantity")}>
+          数量 {sortBy === "quantity" && (sortOrder === "asc" ? "↑" : "↓")}
         </button>
       </div>
 

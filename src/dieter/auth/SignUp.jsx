@@ -60,18 +60,17 @@ export const SignUp = () => {
               Name: name,
             },
           },
-        },
-        { disableEmailConfirmation: true }
+        }
+        // { disableEmailConfirmation: true }
       );
       if (error) throw error;
-      alert("確認メールが送信されました。確認後にログインしてください");
-      nav("/dieter");
+      nav("/");
     } catch (error) {
       alert(error.message);
     }
   };
 
-  if (auth) return <Navigate to="/dieter" />;
+  if (auth) return <Navigate to="/" />;
 
   return (
     <div>
@@ -154,7 +153,7 @@ export const SignUp = () => {
           ></input>
         </form>
         <br />
-        <Link to="/dieter/Login" id="link-Log">
+        <Link to="/Login" id="link-Log">
           ログイン
         </Link>
       </main>

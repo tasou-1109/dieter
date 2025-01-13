@@ -10,7 +10,6 @@ export const TrainingSet = () => {
   const location = useLocation();
   const user_id = location.state.user_id;
   const user_name = location.state.user_name;
-  console.log(user_name);
 
   var menuName;
   var workOut_menu1;
@@ -49,7 +48,7 @@ export const TrainingSet = () => {
         },
       ]);
       alert("記録完了");
-      nav("/dieter");
+      nav("/");
     } catch (error) {
       alert(error.message);
     }

@@ -7,7 +7,6 @@ export const Select_work_out = async (user_name) => {
       .select("*")
       .eq("user_name", user_name);
 
-    console.log(data);
     return data;
   } catch (error) {
     alert(error.message);

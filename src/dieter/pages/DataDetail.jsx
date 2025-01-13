@@ -15,7 +15,7 @@ export const DataDetail = () => {
   const nav = useNavigate();
 
   const handleEdit = () => {
-    nav(`/dieter/Edit/${day}`, {
+    nav(`/Edit/${day}`, {
       state: { menus: menus },
     });
   };
@@ -23,7 +23,7 @@ export const DataDetail = () => {
   const handleDataDelete = async () => {
     try {
       await supabase.from("record").delete().eq("record_id", deleteId);
-      nav("/dieter");
+      nav("/");
     } catch (error) {
       alert(error.message);
     }

@@ -1,0 +1,35 @@
+{
+  "routes": [
+    {
+      "src": "/dieter",
+      "dest": "/index.html"
+    },
+    {
+      "src": "/dieter/(.*)",
+      "dest": "/$1"
+    },
+    {
+      "src": "/dieter/static/js/(.*)\\.js",
+      "dest": "/static/js/$1.js",
+      "headers": {
+        "Content-Type": "application/javascript",
+        "Cache-Control": "public, max-age=31536000, immutable"
+      }
+    },
+    {
+      "src": "/dieter/static/css/(.*)\\.css",
+      "dest": "/static/css/$1.css",
+      "headers": {
+        "Content-Type": "text/css"
+      }
+    },
+    {
+      "src": "/dieter/manifest.json",
+      "dest": "/manifest.json",
+      "headers": {
+        "Content-Type": "application/json"
+      }
+    }
+  ],
+  "public": true
+}
