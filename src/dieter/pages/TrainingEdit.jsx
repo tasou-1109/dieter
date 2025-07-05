@@ -1,5 +1,5 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import { supabase } from "../../supabase";
+import { Update_training } from "../api_Connect/Update_training"; // 追加
 import { Header } from "../header/Header";
 import Bubbles from "../../culinaryMate/components/Animations/Bubbles";
 import WaveAnimation from "../../culinaryMate/components/Animations/WaveAnimation";
@@ -33,25 +33,16 @@ export const TrainingEdit = () => {
     menu4 = e.target.value;
   };
 
+  // Update_trainingを呼び出す形に変更
   const handleWorkOutEdit = async () => {
-    try {
-      const { data } = await supabase
-        .from("workout_menu")
-        .update([
-          {
-            name: set_name,
-            menu1: menu1,
-            menu2: menu2,
-            menu3: menu3,
-            menu4: menu4,
-          },
-        ])
-        .eq("workout_id", update_id)
-        .select();
-      nav("/");
-    } catch (error) {
-      alert(error.message);
-    }
+    await Update_training(update_id, {
+      name: set_name,
+      menu1: menu1,
+      menu2: menu2,
+      menu3: menu3,
+      menu4: menu4,
+    });
+    nav("/");
   };
 
   return (

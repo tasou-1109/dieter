@@ -3,7 +3,8 @@ import { useNavigate, Navigate, Route } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import "../scss/signup.scss";
-import { supabase } from "../../supabase.js";
+import { apiClient } from "../api_Connect/apiClient"; // 追加
+import { getSession } from "../api_Connect/authAPI"; // 追加
 
 export const SignUp = () => {
   //ページ移動用
@@ -12,9 +13,8 @@ export const SignUp = () => {
   const [auth, setAuth] = useState(null);
 
   const getLogin = async () => {
-    const { data } = await supabase.auth.getSession(); //メソッドで非同期処理を行う
-
-    if (data.session) {
+    const { data } = await getSession(); // authAPI経由で取得
+    if (data && data.session) {
       setAuth(data.session);
     }
   };
@@ -32,9 +32,6 @@ export const SignUp = () => {
   } = useForm();
 
   //ユーザ情報
-  // const [mail, setMail] = useState("");
-  // const [name, setName] = useState("");
-  // const [password, setPassword] = useState("");
   var mail;
   var name;
   var pass;
@@ -51,18 +48,9 @@ export const SignUp = () => {
   const onSignUp = async () => {
     try {
       reset();
-      const { error } = await supabase.auth.signUp(
-        {
-          email: mail,
-          password: pass,
-          options: {
-            data: {
-              Name: name,
-            },
-          },
-        }
-        // { disableEmailConfirmation: true }
-      );
+      const { error } = await apiClient.signUp(mail, pass, {
+        data: { Name: name },
+      });
       if (error) throw error;
       nav("/");
     } catch (error) {
@@ -85,7 +73,6 @@ export const SignUp = () => {
           <input
             {...register("name", {
               required: "名前を入力してください",
-              //minLength: { value: 2, message: "2文字以上にしてください" },
             })}
             className="signup-Form__user-Set"
             type="text"
@@ -102,10 +89,6 @@ export const SignUp = () => {
           <input
             {...register("mail", {
               required: "メアドを入力してください",
-              // pattern: {
-              //   value: /\S+@\S+\.\S+/,
-              //   message: "メールアドレスの形式が違います",
-              // },
             })}
             className="signup-Form__mail-log"
             type="text"

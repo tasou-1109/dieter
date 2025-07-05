@@ -1,6 +1,6 @@
 //import "./header.scss";
 import React, { useEffect, useState } from "react";
-import { supabase } from "../../supabase";
+import { getSessionDetail, signOut } from "../api_Connect/authAPI"; // 変更
 import { useNavigate } from "react-router-dom";
 
 export const HomeHeader = () => {
@@ -11,17 +11,13 @@ export const HomeHeader = () => {
   const [auth, setAuth] = useState(null);
 
   const getLogin = async () => {
-    const { data } = await supabase.auth.getSession(); //メソッドで非同期処理を行う
-
-    if (data.session) {
-      if (data.session) {
-        setAuth(data.session.access_token);
-        const a = await supabase.auth.getUser();
-        setUserId(a.data.user.id);
-        setUser_name(a.data.user.user_metadata.Name);
-      } else {
-        console.log(data);
-      }
+    const session = await getSessionDetail();
+    if (session) {
+      setAuth(session.session);
+      setUserId(session.user_id);
+      setUser_name(session.user_name);
+    } else {
+      alert("未ログインで続行します");
     }
   };
 
@@ -31,7 +27,7 @@ export const HomeHeader = () => {
 
   const handleSignOut = async (e) => {
     try {
-      const { error } = await supabase.auth.signOut();
+      const { error } = await signOut(); // authAPIのsignOutを呼び出す
       if (error) throw error;
       nav("/Login");
     } catch (error) {

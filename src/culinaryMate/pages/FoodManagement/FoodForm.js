@@ -74,7 +74,7 @@ const FoodForm = ({ selectedFood, onSubmit, onCancel }) => {
           {selectedFood ? "更新" : "追加"}
         </button>
         {selectedFood && (
-          <button type="button" className="cancel-button" onClick={onCancel}>
+          <button type="button" className="submit-button" onClick={onCancel}>
             キャンセル
           </button>
         )}

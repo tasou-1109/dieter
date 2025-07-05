@@ -4,7 +4,8 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, Link, Navigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import "../scss/login.scss";
-import { supabase } from "../../supabase";
+import { apiClient } from "../api_Connect/apiClient"; // 追加
+import { getSession } from "../api_Connect/authAPI"; // 追加
 
 export const Login = () => {
   const nav = useNavigate();
@@ -12,9 +13,8 @@ export const Login = () => {
   const [auth, setAuth] = useState(null);
 
   const getLogin = async () => {
-    const { data } = await supabase.auth.getSession(); //メソッドで非同期処理を行う
-
-    if (data.session) {
+    const { data } = await getSession(); // authAPI経由で取得
+    if (data && data.session) {
       setAuth(data.session);
     }
   };
@@ -31,8 +31,6 @@ export const Login = () => {
   } = useForm();
 
   //ユーザ情報
-  // const [mail, setMail] = useState("");
-  // const [password, setPassword] = useState("");
   var mail;
   var password;
 
@@ -48,10 +46,7 @@ export const Login = () => {
 
   const onLogIn = async () => {
     try {
-      const { data, error } = await supabase.auth.signInWithPassword({
-        email: mail,
-        password: password,
-      });
+      const { data, error } = await apiClient.signIn(mail, password);
       reset();
       if (error) throw error;
       nav("/");
@@ -74,10 +69,6 @@ export const Login = () => {
           <input
             {...register("mail", {
               required: "メアドを入力してください",
-              // pattern: {
-              //   value: /\S+@\S+\.\S+/,
-              //   message: "メールアドレスの形式が違います",
-              // },
             })}
             type="text"
             className="login-Form__email-Set"
@@ -94,18 +85,6 @@ export const Login = () => {
           <input
             {...register("password", {
               required: "パスワードを入力してください",
-              // minLength: {
-              //   value: 8,
-              //   message: "8文字以上24文字以下にしてください",
-              // },
-              // maxLength: {
-              //   value: 24,
-              //   message: "8文字以上24文字以下にしてください",
-              // },
-              // pattern: {
-              //   value: /^[a-zA-Z0-9.?/-]/,
-              //   message: "パスワードの形式が違います",
-              // },
             })}
             className="login-Form__password-Set"
             type="password"

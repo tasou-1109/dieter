@@ -1,8 +1,8 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import { supabase } from "../../supabase";
 import "../scss/edit.scss";
 import { useState, useEffect } from "react";
 import { Select_work_out } from "../api_Connect/Select_work_out";
+import { updateRecord } from "../api_Connect/recordAPI"; // ここを修正
 import { Header } from "../header/Header";
 import Bubbles from "../../culinaryMate/components/Animations/Bubbles";
 import WaveAnimation from "../../culinaryMate/components/Animations/WaveAnimation";
@@ -39,24 +39,16 @@ export const Edit = () => {
     weight = e.target.value;
   };
 
+  // recordAPIのupdateRecordを呼び出す形に修正
   const handleDataEdit = async () => {
-    try {
-      const { data, error } = await supabase
-        .from("record")
-        .update([
-          {
-            meal: meal,
-            user_id: menus.user_Id,
-            weight: weight,
-            set_name: set_name,
-          },
-        ])
-        .eq("record_id", menus.record_id)
-        .select();
-      nav("/");
-    } catch (error) {
-      alert(error.message);
-    }
+    const updates = {
+      meal: meal,
+      user_id: menus.user_Id,
+      weight: weight,
+      set_name: set_name,
+    };
+    await updateRecord(updates, { record_id: menus.record_id });
+    nav("/");
   };
 
   return (

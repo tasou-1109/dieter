@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Select_record } from "../../api_Connect/Select_record";
+import { select_record } from "../../api_Connect/recordAPI"; // APIのインポート
 
 export const Training = (info) => {
   const user_id = info["user_id"];
@@ -12,7 +12,7 @@ export const Training = (info) => {
 
   //ここでuseEffectを使用しデータを取得する
   const getData = async () => {
-    setMenus(await Select_record(user_name));
+    setMenus(await select_record(user_name));
   };
 
   useEffect(() => {

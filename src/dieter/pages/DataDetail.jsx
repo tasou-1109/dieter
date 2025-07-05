@@ -1,8 +1,9 @@
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { supabase } from "../../supabase";
+// import { supabase } from "../../supabase";
 import "../scss/detaDetail.scss";
 import { Header } from "../header/Header";
+import { Delete_data } from "../api_Connect/Delete_data";
 import Bubbles from "../../culinaryMate/components/Animations/Bubbles";
 import WaveAnimation from "../../culinaryMate/components/Animations/WaveAnimation";
 
@@ -20,13 +21,8 @@ export const DataDetail = () => {
     });
   };
 
-  const handleDataDelete = async () => {
-    try {
-      await supabase.from("record").delete().eq("record_id", deleteId);
-      nav("/");
-    } catch (error) {
-      alert(error.message);
-    }
+  const handleDataDelete = () => {
+    Delete_data(deleteId);
   };
 
   return (

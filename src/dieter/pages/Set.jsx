@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import "../scss/set.scss";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Header } from "../header/Header";
-import { supabase } from "../../supabase";
 import { Select_work_out } from "../api_Connect/Select_work_out";
+import { Insert_data } from "../api_Connect/Insert_data"; // 追加
 import Bubbles from "../../culinaryMate/components/Animations/Bubbles";
 import WaveAnimation from "../../culinaryMate/components/Animations/WaveAnimation";
 
@@ -47,23 +47,18 @@ export const Set = () => {
     weight = e.target.value;
   };
 
-  //記録データの登録
+  // 記録データの登録
   const handleDataSet = async () => {
-    try {
-      const { data, error } = await supabase.from("record").insert([
-        {
-          user_id: user_id,
-          day: date,
-          meal: meal,
-          weight: weight,
-          user_name: user_name,
-          set_name: set_name,
-        },
-      ]);
-      nav("/");
-    } catch (error) {
-      alert(error.message);
-    }
+    const data = {
+      user_id: user_id,
+      day: date,
+      meal: meal,
+      weight: weight,
+      user_name: user_name,
+      set_name: set_name,
+    };
+    await Insert_data(data); // Insert_dataを呼び出し
+    nav("/");
   };
 
   return (

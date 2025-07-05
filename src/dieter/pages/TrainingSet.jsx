@@ -1,8 +1,8 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import { supabase } from "../../supabase";
 import { Header } from "../header/Header";
 import Bubbles from "../../culinaryMate/components/Animations/Bubbles";
 import WaveAnimation from "../../culinaryMate/components/Animations/WaveAnimation";
+import { insertTraining } from "../api_Connect/trainingAPI"; // データ挿入用の関数をインポート
 
 export const TrainingSet = () => {
   const nav = useNavigate();
@@ -36,17 +36,16 @@ export const TrainingSet = () => {
 
   const handleDataSet = async () => {
     try {
-      await supabase.from("workout_menu").insert([
-        {
-          user_id: user_id,
-          name: menuName,
-          menu1: workOut_menu1,
-          menu2: workOut_menu2,
-          menu3: workOut_menu3,
-          menu4: workOut_menu4,
-          user_name: user_name,
-        },
-      ]);
+      const data = {
+        user_id: user_id,
+        name: menuName,
+        menu1: workOut_menu1,
+        menu2: workOut_menu2,
+        menu3: workOut_menu3,
+        menu4: workOut_menu4,
+        user_name: user_name,
+      };
+      await insertTraining(data); // ここでSupabaseにデータを挿入する
       alert("記録完了");
       nav("/");
     } catch (error) {

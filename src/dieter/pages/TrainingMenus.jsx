@@ -1,6 +1,6 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import { supabase } from "../../supabase";
 import { Header } from "../header/Header";
+import { Delete_training } from "../api_Connect/Delete_training";
 import Bubbles from "../../culinaryMate/components/Animations/Bubbles";
 import WaveAnimation from "../../culinaryMate/components/Animations/WaveAnimation";
 
@@ -16,13 +16,9 @@ export const TrainingMenus = () => {
     });
   };
 
-  const moveTrainingDelete = async (delete_id) => {
-    try {
-      await supabase.from("workout_menu").delete().eq("workout_id", delete_id);
-      nav("/");
-    } catch (error) {
-      alert(error.message);
-    }
+  const moveTrainingDelete = () => {
+    Delete_training(workOut.workout_id);
+    nav("/");
   };
 
   return (
