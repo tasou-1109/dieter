@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import "../scss/set.scss";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Header } from "../header/Header";
-import { Select_work_out } from "../api_Connect/Select_work_out";
-import { Insert_data } from "../api_Connect/Insert_data"; // 追加
+import { selectWorkOut } from "../api_Connect/trainingAPI"; // トレーニングAPIのインポート
+import { insertRecord } from "../api_Connect/recordAPI"; // 追加
 import Bubbles from "../../culinaryMate/components/Animations/Bubbles";
 import WaveAnimation from "../../culinaryMate/components/Animations/WaveAnimation";
 
@@ -21,7 +21,7 @@ export const Set = () => {
 
   //トレーニングメニューセットの取得
   const getWorkOutSet = async () => {
-    setWorkOut(await Select_work_out(user_name));
+    setWorkOut(await selectWorkOut(user_name));
   };
 
   useEffect(() => {
@@ -57,7 +57,7 @@ export const Set = () => {
       user_name: user_name,
       set_name: set_name,
     };
-    await Insert_data(data); // Insert_dataを呼び出し
+    await insertRecord(data); // Insert_dataを呼び出し
     nav("/");
   };
 

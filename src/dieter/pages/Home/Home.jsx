@@ -3,7 +3,7 @@ import { Training } from "./Training";
 import { Yotei } from "./Yotei";
 import { HomeHeader } from "../../header/HomeHeader";
 import { useNavigate } from "react-router-dom";
-import { Select_work_out } from "../../api_Connect/Select_work_out";
+import { selectWorkOut } from "../../api_Connect/trainingAPI";
 import { getSessionDetail } from "../../api_Connect/authAPI"; // 変更
 import Bubbles from "../../../culinaryMate/components/Animations/Bubbles";
 import Wave from "../../../culinaryMate/components/Animations/WaveAnimation";
@@ -24,7 +24,7 @@ export const Home = () => {
       setAuth(session.session);
       setUserId(session.user_id);
       setUser_name(session.user_name);
-      setWorkOut(await Select_work_out(session.user_name));
+      setWorkOut(await selectWorkOut(session.user_name));
     } else {
       alert("未ログインで続行します");
     }

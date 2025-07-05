@@ -1,5 +1,5 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import { Update_training } from "../api_Connect/Update_training"; // 追加
+import { updateTraining } from "../api_Connect/trainingAPI"; // 追加
 import { Header } from "../header/Header";
 import Bubbles from "../../culinaryMate/components/Animations/Bubbles";
 import WaveAnimation from "../../culinaryMate/components/Animations/WaveAnimation";
@@ -35,13 +35,14 @@ export const TrainingEdit = () => {
 
   // Update_trainingを呼び出す形に変更
   const handleWorkOutEdit = async () => {
-    await Update_training(update_id, {
+    const data = {
       name: set_name,
       menu1: menu1,
       menu2: menu2,
       menu3: menu3,
       menu4: menu4,
-    });
+    };
+    await updateTraining(update_id, data);
     nav("/");
   };
 

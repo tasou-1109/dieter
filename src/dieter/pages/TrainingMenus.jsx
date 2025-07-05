@@ -1,6 +1,6 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { Header } from "../header/Header";
-import { Delete_training } from "../api_Connect/Delete_training";
+import { deleteTraining } from "../api_Connect/trainingAPI";
 import Bubbles from "../../culinaryMate/components/Animations/Bubbles";
 import WaveAnimation from "../../culinaryMate/components/Animations/WaveAnimation";
 
@@ -17,7 +17,7 @@ export const TrainingMenus = () => {
   };
 
   const moveTrainingDelete = () => {
-    Delete_training(workOut.workout_id);
+    deleteTraining(workOut.workout_id);
     nav("/");
   };
 

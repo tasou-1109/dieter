@@ -4,8 +4,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, Link, Navigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import "../scss/login.scss";
-import { apiClient } from "../api_Connect/apiClient"; // 追加
-import { getSession } from "../api_Connect/authAPI"; // 追加
+import { getSession, signIn } from "../api_Connect/authAPI"; // 追加
 
 export const Login = () => {
   const nav = useNavigate();
@@ -46,7 +45,7 @@ export const Login = () => {
 
   const onLogIn = async () => {
     try {
-      const { data, error } = await apiClient.signIn(mail, password);
+      const { data, error } = await signIn(mail, password);
       reset();
       if (error) throw error;
       nav("/");

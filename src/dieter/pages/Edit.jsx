@@ -1,7 +1,7 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import "../scss/edit.scss";
 import { useState, useEffect } from "react";
-import { Select_work_out } from "../api_Connect/Select_work_out";
+import { selectWorkOut } from "../api_Connect/trainingAPI"; // トレーニングAPIのインポート
 import { updateRecord } from "../api_Connect/recordAPI"; // ここを修正
 import { Header } from "../header/Header";
 import Bubbles from "../../culinaryMate/components/Animations/Bubbles";
@@ -21,7 +21,7 @@ export const Edit = () => {
   const [workOut, setWorkOut] = useState([]);
 
   const getWorkOutSet = async () => {
-    setWorkOut(await Select_work_out(user_name));
+    setWorkOut(await selectWorkOut(user_name));
   };
 
   useEffect(() => {

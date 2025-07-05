@@ -3,8 +3,7 @@ import { useNavigate, Navigate, Route } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import "../scss/signup.scss";
-import { apiClient } from "../api_Connect/apiClient"; // 追加
-import { getSession } from "../api_Connect/authAPI"; // 追加
+import { getSession,signUp } from "../api_Connect/authAPI"; // 追加
 
 export const SignUp = () => {
   //ページ移動用
@@ -48,7 +47,7 @@ export const SignUp = () => {
   const onSignUp = async () => {
     try {
       reset();
-      const { error } = await apiClient.signUp(mail, pass, {
+      const { error } = await signUp(mail, pass, {
         data: { Name: name },
       });
       if (error) throw error;

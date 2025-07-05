@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 // import { supabase } from "../../supabase";
 import "../scss/detaDetail.scss";
 import { Header } from "../header/Header";
-import { Delete_data } from "../api_Connect/Delete_data";
+import { deleteRecord } from "../api_Connect/recordAPI";
 import Bubbles from "../../culinaryMate/components/Animations/Bubbles";
 import WaveAnimation from "../../culinaryMate/components/Animations/WaveAnimation";
 
@@ -22,7 +22,7 @@ export const DataDetail = () => {
   };
 
   const handleDataDelete = () => {
-    Delete_data(deleteId);
+    deleteRecord(deleteId);
   };
 
   return (
